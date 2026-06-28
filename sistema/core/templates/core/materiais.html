@@ -9,7 +9,7 @@ Materiais
 </h2>
 
 
-<a href="/materiais/novo/">
+<a href="{% url 'novo_material' %}">
     Novo material
 </a>
 
@@ -41,6 +41,16 @@ Materiais
     <p>
         Valor: R$ {{ material.valor_rolo }}
     </p>
+
+     <a href="{% url 'editar_material' material.id %}">
+    Editar
+</a>
+
+<br>
+
+<a href="{% url 'excluir_material' material.id %}">
+    Excluir
+</a>
 
 </div>
 

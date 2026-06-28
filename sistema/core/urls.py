@@ -16,8 +16,16 @@ urlpatterns = [
         name='novo_material'
     ),
 
-    path('impressoras/', views.impressoras, name='impressoras'),
+    path(
+        'materiais/editar/<int:id>/',
+        views.editar_material,
+        name='editar_material'
+    ),
 
-    path('orcamentos/', views.orcamentos, name='orcamentos'),
+    path(
+        'materiais/excluir/<int:id>/',
+        views.excluir_material,
+        name='excluir_material'
+    ),
 
 ]

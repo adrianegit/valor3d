@@ -58,11 +58,17 @@ class OrcamentoAdmin(admin.ModelAdmin):
         "peso_peca",
         "tempo_impressao_horas",
         "quantidade",
-        "custo_material",
-        "custo_maquina",
-        "custo_total",
+        "custo_material_formatado",
+        "custo_maquina_formatado",
+        "custo_total_formatado",
         "data_criacao",
     )
+
+    ordering = (
+        "-data_criacao",
+    )
+
+    list_per_page = 20
 
     list_filter = (
         "material",
@@ -77,3 +83,18 @@ class OrcamentoAdmin(admin.ModelAdmin):
     readonly_fields = (
         "data_criacao",
     )
+
+    @admin.display(description="Custo Material")
+    def custo_material_formatado(self, obj):
+        return f"R$ {obj.custo_material:.2f}"
+
+    @admin.display(description="Custo Máquina")
+    def custo_maquina_formatado(self, obj):
+        return f"R$ {obj.custo_maquina:.2f}"
+
+    @admin.display(description="Custo Total")
+    def custo_total_formatado(self, obj):
+        return f"R$ {obj.custo_total:.2f}"
+
+
+

@@ -98,7 +98,11 @@ class Orcamento(models.Model):
     )
 
     def __str__(self):
-        return f"Orçamento {self.id}"
+        return (
+            f"Orçamento {self.id} - "
+            f"{self.material.nome} "
+            f"({self.peso_peca} g)"
+        )
 
 
     @property
@@ -109,7 +113,9 @@ class Orcamento(models.Model):
             self.material.peso_rolo
         )
 
-        return self.peso_peca * custo_grama
+        return (
+            self.peso_peca * custo_grama
+        ).quantize(Decimal("0.01"))
 
 
     @property
@@ -120,13 +126,16 @@ class Orcamento(models.Model):
             self.impressora.vida_util_horas
         )
 
-        return self.tempo_impressao_horas * custo_hora
+        return (
+            self.tempo_impressao_horas * custo_hora
+        ).quantize(Decimal("0.01"))
 
 
+   
     @property
     def custo_total(self):
 
         return (
             self.custo_material +
             self.custo_maquina
-        )
+        ).quantize(Decimal("0.01"))

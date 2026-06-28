@@ -9,9 +9,53 @@ Materiais
 </h2>
 
 
+<a href="/materiais/novo/">
+    Novo material
+</a>
+
+
+<hr>
+
+
+{% for material in materiais %}
+
+
+<div>
+
+    <h3>
+        {{ material.nome }}
+    </h3>
+
+    <p>
+        Marca: {{ material.marca }}
+    </p>
+
+    <p>
+        Tipo: {{ material.tipo }}
+    </p>
+
+    <p>
+        Peso rolo: {{ material.peso_rolo }}g
+    </p>
+
+    <p>
+        Valor: R$ {{ material.valor_rolo }}
+    </p>
+
+</div>
+
+
+<hr>
+
+
+{% empty %}
+
 <p>
-Cadastro de materiais de impressão 3D.
+Nenhum material cadastrado.
 </p>
+
+
+{% endfor %}
 
 
 {% endblock %}

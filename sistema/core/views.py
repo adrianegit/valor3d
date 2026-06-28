@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Material, Impressora, Orcamento
+from .forms import MaterialForm
 
 
 
@@ -28,7 +29,15 @@ def dashboard(request):
 
 def materiais(request):
 
-    return render(request, 'core/materiais.html')
+    materiais = Material.objects.all()
+
+    return render(
+        request,
+        'core/materiais.html',
+        {
+            'materiais': materiais
+        }
+    )
 
 
 
@@ -41,3 +50,30 @@ def impressoras(request):
 def orcamentos(request):
 
     return render(request, 'core/orcamentos.html')
+
+
+def novo_material(request):
+
+    if request.method == 'POST':
+
+        form = MaterialForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect('/materiais/')
+
+
+    else:
+
+        form = MaterialForm()
+
+
+    return render(
+        request,
+        'core/material_form.html',
+        {
+            'form': form
+        }
+    )

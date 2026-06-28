@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Material, Impressora, Orcamento
 
 
+
 def home(request):
 
     return render(request, 'core/home.html')
@@ -22,3 +23,21 @@ def dashboard(request):
 
 
     return render(request, 'core/dashboard.html', contexto)
+
+
+
+def materiais(request):
+
+    return render(request, 'core/materiais.html')
+
+
+
+def impressoras(request):
+
+    return render(request, 'core/impressoras.html')
+
+
+
+def orcamentos(request):
+
+    return render(request, 'core/orcamentos.html')

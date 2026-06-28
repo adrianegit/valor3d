@@ -39,3 +39,35 @@ footer {
     padding: 20px;
 
 }
+
+
+.cards {
+
+    display: flex;
+    gap: 20px;
+
+}
+
+
+
+.card {
+
+    border: 1px solid #ccc;
+
+    padding: 20px;
+
+    width: 200px;
+
+    text-align: center;
+
+}
+
+
+
+.card p {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+}

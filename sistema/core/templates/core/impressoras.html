@@ -1,17 +1,108 @@
 {% extends 'core/base.html' %}
 
-
 {% block content %}
 
+<h1>Impressoras</h1>
 
-<h2>
-Impressoras
-</h2>
+<a href="/impressoras/novo/">
+    Nova impressora
+</a>
 
 
-<p>
-Cadastro de impressoras 3D.
-</p>
+<table border="1">
+
+    <thead>
+
+        <tr>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Potência</th>
+            <th>Valor</th>
+            <th>Vida útil</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        {% for impressora in impressoras %}
+
+        <tr>
+
+            <td>
+                {{ impressora.nome }}
+            </td>
+
+            <td>
+                {{ impressora.marca }}
+            </td>
+
+            <td>
+                {{ impressora.modelo }}
+            </td>
+
+            <td>
+                {{ impressora.potencia_watts }} W
+            </td>
+
+            <td>
+                R$ {{ impressora.valor_equipamento }}
+            </td>
+
+            <td>
+                {{ impressora.vida_util_horas }} h
+            </td>
+
+            <td>
+
+                {% if impressora.ativa %}
+                    Ativa
+                {% else %}
+                    Inativa
+                {% endif %}
+
+            </td>
+
+
+            <td>
+
+                <a href="/impressoras/editar/{{ impressora.id }}/">
+                    Editar
+                </a>
+
+                |
+
+                <a href="/impressoras/excluir/{{ impressora.id }}/">
+                    Excluir
+                </a>
+
+            </td>
+
+        </tr>
+
+
+        {% empty %}
+
+        <tr>
+
+            <td colspan="8">
+                Nenhuma impressora cadastrada.
+            </td>
+
+        </tr>
+
+
+        {% endfor %}
+
+
+    </tbody>
+
+
+</table>
 
 
 {% endblock %}

@@ -1,17 +1,56 @@
 {% extends 'core/base.html' %}
 
-
 {% block content %}
 
+<h2>Orçamentos</h2>
 
-<h2>
-Orçamentos
-</h2>
+<a href="{% url 'novo_orcamento' %}">
+    Novo orçamento
+</a>
 
+<hr>
 
-<p>
-Gerenciamento de orçamentos de impressão.
-</p>
+<table border="1" cellpadding="8">
 
+    <tr>
+        <th>Material</th>
+        <th>Impressora</th>
+        <th>Peso (g)</th>
+        <th>Tempo (h)</th>
+        <th>Qtd</th>
+        <th>Material (R$)</th>
+        <th>Máquina (R$)</th>
+        <th>Total (R$)</th>
+        <th>Ações</th>
+    </tr>
+
+    {% for o in orcamentos %}
+
+    <tr>
+        <td>{{ o.material.nome }}</td>
+        <td>{{ o.impressora.nome }}</td>
+        <td>{{ o.peso_peca }}</td>
+        <td>{{ o.tempo_impressao_horas }}</td>
+        <td>{{ o.quantidade }}</td>
+        <td>{{ o.custo_material }}</td>
+        <td>{{ o.custo_maquina }}</td>
+        <td><strong>{{ o.custo_total }}</strong></td>
+
+        <td>
+            <a href="{% url 'editar_orcamento' o.id %}">Editar</a>
+            |
+            <a href="{% url 'excluir_orcamento' o.id %}">Excluir</a>
+        </td>
+    </tr>
+
+    {% empty %}
+
+    <tr>
+        <td colspan="9">Nenhum orçamento cadastrado</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
 
 {% endblock %}

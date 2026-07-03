@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import Material, Impressora, ConfiguracaoCusto, Orcamento
+
+from .models import (
+    Material,
+    Impressora,
+    ConfiguracaoCusto,
+    Orcamento,
+)
+
 
 
 @admin.register(Material)
@@ -9,17 +16,11 @@ class MaterialAdmin(admin.ModelAdmin):
         "marca",
         "tipo",
         "peso_rolo",
-        "valor_rolo",
+        "valor",
     )
 
-    search_fields = (
-        "nome",
-        "marca",
-    )
-
-    list_filter = (
-        "tipo",
-    )
+    search_fields = ("nome", "marca")
+    list_filter = ("tipo",)
 
 
 @admin.register(Impressora)
@@ -31,6 +32,7 @@ class ImpressoraAdmin(admin.ModelAdmin):
         "potencia_watts",
         "valor_equipamento",
         "vida_util_horas",
+        "ativa",
     )
 
     search_fields = (
@@ -38,6 +40,8 @@ class ImpressoraAdmin(admin.ModelAdmin):
         "marca",
         "modelo",
     )
+
+    list_filter = ("ativa",)
 
 
 @admin.register(ConfiguracaoCusto)

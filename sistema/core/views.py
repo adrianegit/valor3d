@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Material, Impressora, Orcamento
-from .forms import MaterialForm
+from .forms import (
+    MaterialForm,
+    ImpressoraForm,
+    OrcamentoForm,
+)
 
 
 
@@ -29,7 +33,7 @@ def dashboard(request):
 
 def materiais(request):
 
-    material = get_object_or_404(Material, id=id)
+    materiais = Material.objects.all()
 
     return render(
         request,
@@ -43,13 +47,30 @@ def materiais(request):
 
 def impressoras(request):
 
-    return render(request, 'core/impressoras.html')
+    impressoras = Impressora.objects.all()
 
+    print("IMPRESSORAS:", impressoras)
+
+    return render(
+        request,
+        'core/impressoras.html',
+        {
+            'impressoras': impressoras
+        }
+    )
 
 
 def orcamentos(request):
 
-    return render(request, 'core/orcamentos.html')
+    orcamentos = Orcamento.objects.all()
+
+    return render(
+        request,
+        'core/orcamentos.html',
+        {
+            'orcamentos': orcamentos
+        }
+    )
 
 
 def novo_material(request):
@@ -122,3 +143,149 @@ def excluir_material(request, id):
     material.delete()
 
     return redirect('/materiais/')
+
+
+def novo_impressora(request):
+
+    if request.method == "POST":
+
+        form = ImpressoraForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect("/impressoras/")
+
+    else:
+
+        form = ImpressoraForm()
+
+    return render(
+        request,
+        "core/impressora_form.html",
+        {
+            "form": form
+        }
+    )
+
+
+def editar_impressora(request, id):
+
+    impressora = get_object_or_404(
+        Impressora,
+        id=id
+    )
+
+    if request.method == "POST":
+
+        form = ImpressoraForm(
+            request.POST,
+            instance=impressora
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect("/impressoras/")
+
+    else:
+
+        form = ImpressoraForm(
+            instance=impressora
+        )
+
+    return render(
+        request,
+        "core/impressora_form.html",
+        {
+            "form": form
+        }
+    )
+
+
+def excluir_impressora(request, id):
+
+    impressora = get_object_or_404(
+        Impressora,
+        id=id
+    )
+
+    impressora.delete()
+
+    return redirect("/impressoras/")
+
+
+def novo_orcamento(request):
+
+    if request.method == "POST":
+
+        form = OrcamentoForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect("/orcamentos/")
+
+    else:
+
+        form = OrcamentoForm()
+
+    return render(
+        request,
+        "core/orcamento_form.html",
+        {
+            "form": form
+        }
+    )
+
+
+
+def editar_orcamento(request, id):
+
+    orcamento = get_object_or_404(
+        Orcamento,
+        id=id
+    )
+
+    if request.method == "POST":
+
+        form = OrcamentoForm(
+            request.POST,
+            instance=orcamento
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect("/orcamentos/")
+
+    else:
+
+        form = OrcamentoForm(
+            instance=orcamento
+        )
+
+    return render(
+        request,
+        "core/orcamento_form.html",
+        {
+            "form": form
+        }
+    )
+
+
+
+def excluir_orcamento(request, id):
+
+    orcamento = get_object_or_404(
+        Orcamento,
+        id=id
+    )
+
+    orcamento.delete()
+
+    return redirect("orcamentos")

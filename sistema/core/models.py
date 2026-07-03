@@ -12,7 +12,7 @@ class Material(models.Model):
         decimal_places=2
     )
 
-    valor_rolo = models.DecimalField(
+    valor = models.DecimalField(
         max_digits=10,
         decimal_places=2
     )
@@ -37,10 +37,9 @@ class Impressora(models.Model):
         decimal_places=2
     )
 
-    vida_util_horas = models.DecimalField(
-        max_digits=10,
-        decimal_places=2
-    )
+    vida_util_horas = models.PositiveIntegerField()
+
+    ativa = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nome
@@ -109,7 +108,7 @@ class Orcamento(models.Model):
     def custo_material(self):
 
         custo_grama = (
-            self.material.valor_rolo /
+            self.material.valor /
             self.material.peso_rolo
         )
 
@@ -135,7 +134,29 @@ class Orcamento(models.Model):
     @property
     def custo_total(self):
 
-        return (
+        total_unitario = (
             self.custo_material +
             self.custo_maquina
+        )
+
+        return (
+            total_unitario * self.quantidade
+        ).quantize(Decimal("0.01"))
+    
+
+    @property
+    def preco_com_lucro(self):
+
+        config = ConfiguracaoCusto.objects.first()
+
+        if not config:
+            return self.custo_total
+
+        lucro = (
+            self.custo_total *
+            (config.margem_lucro / Decimal("100"))
+        )
+
+        return (
+            self.custo_total + lucro
         ).quantize(Decimal("0.01"))

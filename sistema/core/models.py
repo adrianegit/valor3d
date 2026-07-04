@@ -21,11 +21,13 @@ class Material(models.Model):
         return self.nome
 
 
-
 class Impressora(models.Model):
     nome = models.CharField(max_length=100)
     marca = models.CharField(max_length=100)
     modelo = models.CharField(max_length=100)
+
+     # 👇 NOVO CAMPO
+    imagem = models.ImageField(upload_to='impressoras/', blank=True, null=True)
 
     potencia_watts = models.DecimalField(
         max_digits=8,
@@ -43,7 +45,6 @@ class Impressora(models.Model):
 
     def __str__(self):
         return self.nome
-
 
 
 class ConfiguracaoCusto(models.Model):
@@ -64,7 +65,6 @@ class ConfiguracaoCusto(models.Model):
 
     def __str__(self):
         return "Configuração de custo"
-
 
 
 class Orcamento(models.Model):
@@ -103,7 +103,6 @@ class Orcamento(models.Model):
             f"({self.peso_peca} g)"
         )
 
-
     @property
     def custo_material(self):
 
@@ -116,7 +115,6 @@ class Orcamento(models.Model):
             self.peso_peca * custo_grama
         ).quantize(Decimal("0.01"))
 
-
     @property
     def custo_maquina(self):
 
@@ -128,22 +126,57 @@ class Orcamento(models.Model):
         return (
             self.tempo_impressao_horas * custo_hora
         ).quantize(Decimal("0.01"))
+    
+    @property
+    def custo_energia(self):
 
+        config = ConfiguracaoCusto.objects.first()
 
-   
+        if not config:
+            return Decimal("0.00")
+
+        potencia_kw = (
+            self.impressora.potencia_watts /
+            Decimal("1000")
+        )
+
+        consumo = (
+            potencia_kw *
+            self.tempo_impressao_horas
+        )
+
+        return (
+            consumo *
+            config.valor_kwh
+        ).quantize(Decimal("0.01"))
+    
+    @property
+    def custo_mao_obra(self):
+
+        config = ConfiguracaoCusto.objects.first()
+
+        if not config:
+            return Decimal("0.00")
+
+        return (
+            self.tempo_impressao_horas *
+            config.custo_mao_obra_hora
+        ).quantize(Decimal("0.01"))
+
     @property
     def custo_total(self):
 
         total_unitario = (
             self.custo_material +
-            self.custo_maquina
+            self.custo_maquina +
+            self.custo_energia +
+            self.custo_mao_obra
         )
 
         return (
             total_unitario * self.quantidade
         ).quantize(Decimal("0.01"))
     
-
     @property
     def preco_com_lucro(self):
 

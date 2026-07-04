@@ -1,71 +1,42 @@
 {% extends 'core/base.html' %}
 
-
 {% block content %}
 
+<div class="container">
 
-<h2>
-Materiais
-</h2>
+    <div class="page-header">
+        <h2>🧱 Materiais</h2>
 
+        <a href="{% url 'novo_material' %}" class="btn btn-primary">
+            + Novo material
+        </a>
+    </div>
 
-<a href="{% url 'novo_material' %}">
-    Novo material
-</a>
+    <div class="card">
 
+        {% for material in materiais %}
 
-<hr>
+            <p>
+                <strong>{{ material.nome }}</strong> -
+                {{ material.tipo }} -
+                R$ {{ material.valor }}
 
+                <br>
 
-{% for material in materiais %}
+                <a href="{% url 'editar_material' material.id %}">Editar</a> |
+                <a href="{% url 'excluir_material' material.id %}">Excluir</a>
+            </p>
 
+            <hr>
 
-<div>
+        {% empty %}
 
-    <h3>
-        {{ material.nome }}
-    </h3>
+            <p>Nenhum material cadastrado.</p>
 
-    <p>
-        Marca: {{ material.marca }}
-    </p>
+        {% endfor %}
 
-    <p>
-        Tipo: {{ material.tipo }}
-    </p>
-
-    <p>
-        Peso rolo: {{ material.peso_rolo }}g
-    </p>
-
-    <p>
-        Valor: R$ {{ material.valor }}
-    </p>
-
-     <a href="{% url 'editar_material' material.id %}">
-    Editar
-</a>
-
-<br>
-
-<a href="{% url 'excluir_material' material.id %}">
-    Excluir
-</a>
+    </div>
 
 </div>
-
-
-<hr>
-
-
-{% empty %}
-
-<p>
-Nenhum material cadastrado.
-</p>
-
-
-{% endfor %}
-
 
 {% endblock %}

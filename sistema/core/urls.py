@@ -86,5 +86,10 @@ urlpatterns = [
         name='excluir_orcamento'
     ),
 
-]
+    path(
+        "configuracao/",
+        views.configuracao_custo,
+        name="configuracao_custo",
+    ),
 
+]

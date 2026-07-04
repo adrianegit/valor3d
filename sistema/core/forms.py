@@ -4,6 +4,7 @@ from .models import (
     Material,
     Impressora,
     Orcamento,
+    ConfiguracaoCusto,
 )
 
 
@@ -40,6 +41,7 @@ class ImpressoraForm(forms.ModelForm):
 
 class OrcamentoForm(forms.ModelForm):
 
+
     class Meta:
         model = Orcamento
 
@@ -57,4 +59,32 @@ class OrcamentoForm(forms.ModelForm):
             "quantidade": "Quantidade",
         }
 
-        
+class ConfiguracaoCustoForm(forms.ModelForm):
+
+
+    class Meta:
+        model = ConfiguracaoCusto
+
+        fields = [
+            "valor_kwh",
+            "custo_mao_obra_hora",
+            "margem_lucro",
+        ]
+
+        labels = {
+            "valor_kwh": "Valor do kWh (R$)",
+            "custo_mao_obra_hora": "Mão de obra por hora (R$)",
+            "margem_lucro": "Margem de lucro (%)",
+        }
+
+        widgets = {
+            "valor_kwh": forms.NumberInput(attrs={
+                "class": "form-control"
+            }),
+            "custo_mao_obra_hora": forms.NumberInput(attrs={
+                "class": "form-control"
+            }),
+            "margem_lucro": forms.NumberInput(attrs={
+                "class": "form-control"
+            }),
+        }

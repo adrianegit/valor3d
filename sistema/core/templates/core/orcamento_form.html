@@ -2,18 +2,18 @@
 
 {% block content %}
 
-<h2>
-Novo orçamento
-</h2>
+<h2 class="mb-4">📊 Novo Orçamento</h2>
 
 <form method="POST">
 
     {% csrf_token %}
 
-    {{ form.as_p }}
+    <div class="form-container">
+        {{ form.as_p }}
+    </div>
 
-    <button type="submit">
-        Salvar orçamento
+    <button type="submit" class="btn btn-success">
+        💾 Salvar orçamento
     </button>
 
 </form>

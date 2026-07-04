@@ -1,73 +1,126 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
+    background: #f4f6f9;
+    color: #333;
 }
 
-
+/* HEADER */
 header {
-
     padding: 20px;
-
+    background: #1f2937;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-
+/* NAV */
 nav a {
-
     margin-right: 15px;
     text-decoration: none;
-
+    color: white;
+    font-weight: 500;
 }
 
+nav a:hover {
+    text-decoration: underline;
+}
 
+/* CONTEÚDO */
 main {
-
     padding: 30px;
-
 }
 
-
-button {
-
+/* BOTÕES */
+button, .btn {
     padding: 10px 20px;
-
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
 }
 
+button:hover, .btn:hover {
+    background: #1d4ed8;
+}
 
+/* FOOTER */
 footer {
-
     margin-top: 50px;
     padding: 20px;
-
-}
-
-
-.cards {
-
-    display: flex;
-    gap: 20px;
-
-}
-
-
-
-.card {
-
-    border: 1px solid #ccc;
-
-    padding: 20px;
-
-    width: 200px;
-
     text-align: center;
-
+    background: #e5e7eb;
 }
 
+/* GRID DE CARDS */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
 
+/* CARD IMPRESSORA */
+.printer-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: 0.25s ease;
+}
 
-.card p {
+.printer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
 
-    font-size: 30px;
+.printer-card:hover {
+    transform: translateY(-4px);
+}
 
+/* IMAGEM */
+.printer-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* TEXTO CARD */
+.printer-info p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+/* AÇÕES */
+.actions a {
+    text-decoration: none;
+    margin-right: 10px;
+    color: #2563eb;
+}
+
+.actions a:hover {
+    text-decoration: underline;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
     font-weight: bold;
+}
 
+.badge-ativo {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-inativo {
+    background: #fee2e2;
+    color: #991b1b;
 }

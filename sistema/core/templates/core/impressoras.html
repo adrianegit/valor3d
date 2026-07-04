@@ -1,108 +1,64 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block content %}
 
-<h1>Impressoras</h1>
+<div class="container">
 
-<a href="/impressoras/novo/">
-    Nova impressora
-</a>
+    <div class="page-header">
+        <h2>🖨 Impressoras</h2>
 
+        <a href="/impressoras/novo/" class="btn btn-primary">
+            + Nova impressora
+        </a>
+    </div>
 
-<table border="1">
-
-    <thead>
-
-        <tr>
-            <th>Nome</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Potência</th>
-            <th>Valor</th>
-            <th>Vida útil</th>
-            <th>Status</th>
-            <th>Ações</th>
-        </tr>
-
-    </thead>
-
-
-    <tbody>
+    <div class="cards-grid">
 
         {% for impressora in impressoras %}
 
-        <tr>
+        <div class="printer-card">
 
-            <td>
-                {{ impressora.nome }}
-            </td>
+            <img 
+                src="{% static 'core/img/impressoras/default.jpg' %}" 
+                class="printer-img"
+                alt="Impressora"
+            >
 
-            <td>
-                {{ impressora.marca }}
-            </td>
+            <div class="printer-info">
 
-            <td>
-                {{ impressora.modelo }}
-            </td>
+                <h3>{{ impressora.nome }}</h3>
 
-            <td>
-                {{ impressora.potencia_watts }} W
-            </td>
+                <p>🏷 {{ impressora.marca }} - {{ impressora.modelo }}</p>
+                <p>⚡ {{ impressora.potencia_watts }} W</p>
+                <p>💰 R$ {{ impressora.valor_equipamento }}</p>
+                <p>⏱ {{ impressora.vida_util_horas }} h</p>
 
-            <td>
-                R$ {{ impressora.valor_equipamento }}
-            </td>
+                <p>
+                    {% if impressora.ativa %}
+                        🟢 Ativa
+                    {% else %}
+                        🔴 Inativa
+                    {% endif %}
+                </p>
 
-            <td>
-                {{ impressora.vida_util_horas }} h
-            </td>
+                <div class="actions">
+                    <a href="/impressoras/editar/{{ impressora.id }}/">Editar</a> |
+                    <a href="/impressoras/excluir/{{ impressora.id }}/">Excluir</a>
+                </div>
 
-            <td>
+            </div>
 
-                {% if impressora.ativa %}
-                    Ativa
-                {% else %}
-                    Inativa
-                {% endif %}
-
-            </td>
-
-
-            <td>
-
-                <a href="/impressoras/editar/{{ impressora.id }}/">
-                    Editar
-                </a>
-
-                |
-
-                <a href="/impressoras/excluir/{{ impressora.id }}/">
-                    Excluir
-                </a>
-
-            </td>
-
-        </tr>
-
+        </div>
 
         {% empty %}
 
-        <tr>
-
-            <td colspan="8">
-                Nenhuma impressora cadastrada.
-            </td>
-
-        </tr>
-
+        <p>Nenhuma impressora cadastrada.</p>
 
         {% endfor %}
 
+    </div>
 
-    </tbody>
-
-
-</table>
-
+</div>
 
 {% endblock %}

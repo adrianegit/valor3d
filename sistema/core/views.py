@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Material, Impressora, Orcamento
+from .models import Material, Impressora, Orcamento, ConfiguracaoCusto 
 from .forms import (
     MaterialForm,
     ImpressoraForm,
     OrcamentoForm,
+    ConfiguracaoCustoForm,
 )
 
 
@@ -278,7 +279,6 @@ def editar_orcamento(request, id):
     )
 
 
-
 def excluir_orcamento(request, id):
 
     orcamento = get_object_or_404(
@@ -289,3 +289,29 @@ def excluir_orcamento(request, id):
     orcamento.delete()
 
     return redirect("orcamentos")
+
+def configuracao_custo(request):
+
+    configuracao = ConfiguracaoCusto.objects.first()
+
+    if configuracao:
+        form = ConfiguracaoCustoForm(
+            request.POST or None,
+            instance=configuracao
+        )
+    else:
+        form = ConfiguracaoCustoForm(
+            request.POST or None
+        )
+
+    if form.is_valid():
+        form.save()
+        return redirect("configuracao_custo")
+
+    return render(
+        request,
+        "core/configuracao_custo_form.html",
+        {
+            "form": form
+        }
+    )

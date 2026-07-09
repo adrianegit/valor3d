@@ -1,7 +1,6 @@
 from decimal import Decimal
 from django.db import models
 
-
 class Material(models.Model):
     nome = models.CharField(max_length=100)
     marca = models.CharField(max_length=100)
@@ -16,10 +15,6 @@ class Material(models.Model):
         max_digits=10,
         decimal_places=2
     )
-
-    def __str__(self):
-        return self.nome
-
 
 class Impressora(models.Model):
     nome = models.CharField(max_length=100)
@@ -68,15 +63,50 @@ class ConfiguracaoCusto(models.Model):
 
 
 class Orcamento(models.Model):
-    material = models.ForeignKey(
-        Material,
-        on_delete=models.CASCADE
+
+    STATUS_CHOICES = [
+        ("novo", "Novo"),
+        ("analise", "Em análise"),
+        ("aprovado", "Aprovado"),
+        ("producao", "Em produção"),
+        ("finalizado", "Finalizado"),
+        ("cancelado", "Cancelado"),
+    ]
+
+    status = models.CharField(
+    max_length=20,
+    choices=STATUS_CHOICES,
+    default="novo",
+    verbose_name="Status"
     )
 
-    impressora = models.ForeignKey(
-        Impressora,
-        on_delete=models.CASCADE
+    nome_peca = models.CharField(
+        max_length=150,
+        verbose_name="Nome da peça"
     )
+
+    cliente = models.CharField(
+        max_length=150,
+        blank=True,
+        verbose_name="Cliente"
+    )
+
+    observacoes = models.TextField(
+        blank=True,
+        verbose_name="Observações"
+    )
+
+    material = models.ForeignKey(
+    Material,
+    on_delete=models.CASCADE,
+    verbose_name="Material"
+)
+    
+    impressora = models.ForeignKey(
+    Impressora,
+    on_delete=models.CASCADE,
+    verbose_name="Impressora"
+)
 
     peso_peca = models.DecimalField(
         max_digits=8,
@@ -88,21 +118,19 @@ class Orcamento(models.Model):
         decimal_places=2
     )
 
-    quantidade = models.IntegerField(
-        default=1
+    quantidade = models.PositiveIntegerField(
+    default=1,
+    verbose_name="Quantidade"
     )
-
+    
     data_criacao = models.DateTimeField(
         auto_now_add=True
     )
 
     def __str__(self):
-        return (
-            f"Orçamento {self.id} - "
-            f"{self.material.nome} "
-            f"({self.peso_peca} g)"
-        )
-
+        return f"{self.nome_peca} - {self.material.nome}"
+    
+    
     @property
     def custo_material(self):
 
@@ -112,7 +140,9 @@ class Orcamento(models.Model):
         )
 
         return (
-            self.peso_peca * custo_grama
+        self.peso_peca *
+        custo_grama *
+        self.quantidade
         ).quantize(Decimal("0.01"))
 
     @property

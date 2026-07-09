@@ -41,11 +41,14 @@ class ImpressoraForm(forms.ModelForm):
 
 class OrcamentoForm(forms.ModelForm):
 
-
     class Meta:
         model = Orcamento
 
         fields = [
+            "nome_peca",
+            "cliente",
+            "observacoes",
+            "status",
             "material",
             "impressora",
             "peso_peca",
@@ -54,9 +57,61 @@ class OrcamentoForm(forms.ModelForm):
         ]
 
         labels = {
+            "nome_peca": "Nome da peça",
+            "cliente": "Cliente",
+            "observacoes": "Observações",
+            "status": "Status",
+            "material": "Material",
+            "impressora": "Impressora",
             "peso_peca": "Peso da peça (g)",
             "tempo_impressao_horas": "Tempo de impressão (h)",
             "quantidade": "Quantidade",
+        }
+
+        widgets = {
+
+            "nome_peca": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Ex: Suporte de celular"
+            }),
+
+            "cliente": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Nome do cliente"
+            }),
+
+            "observacoes": forms.Textarea(attrs={
+                "class": "form-control",
+                "rows": 3,
+                "placeholder": "Detalhes da peça..."
+            }),
+
+            "status": forms.Select(attrs={
+                "class": "form-select"
+            }),
+
+            "material": forms.Select(attrs={
+                "class": "form-select"
+            }),
+
+            "impressora": forms.Select(attrs={
+                "class": "form-select"
+            }),
+
+            "peso_peca": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "0.01"
+            }),
+
+            "tempo_impressao_horas": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "0.01"
+            }),
+
+            "quantidade": forms.NumberInput(attrs={
+                "class": "form-control",
+                "min": "1"
+            }),
         }
 
 class ConfiguracaoCustoForm(forms.ModelForm):

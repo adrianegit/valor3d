@@ -226,9 +226,12 @@ def novo_orcamento(request):
 
         if form.is_valid():
 
-            form.save()
+            orcamento = form.save()
 
-            return redirect("/orcamentos/")
+            return redirect(
+                "detalhe_orcamento",
+                id=orcamento.id
+            )
 
     else:
 
@@ -241,7 +244,6 @@ def novo_orcamento(request):
             "form": form
         }
     )
-
 
 
 def editar_orcamento(request, id):
@@ -289,6 +291,21 @@ def excluir_orcamento(request, id):
     orcamento.delete()
 
     return redirect("orcamentos")
+
+def detalhe_orcamento(request, id):
+
+    orcamento = get_object_or_404(
+        Orcamento,
+        id=id
+    )
+
+    return render(
+        request,
+        "core/orcamento_detalhe.html",
+        {
+            "orcamento": orcamento
+        }
+    )
 
 def configuracao_custo(request):
 

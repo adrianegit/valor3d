@@ -193,3 +193,11 @@ class Orcamento(models.Model):
         return (
             self.custo_total + lucro
         ).quantize(Decimal("0.01"))
+
+    @property
+    def lucro(self):
+
+        return (
+        self.preco_com_lucro -
+        self.custo_total
+    ).quantize(Decimal("0.01"))

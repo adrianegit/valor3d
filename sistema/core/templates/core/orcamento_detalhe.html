@@ -1,0 +1,125 @@
+ {% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3 class="mb-0">
+                📄 Resumo do Orçamento
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                Informações da Impressão
+            </h5>
+
+            <table class="table">
+
+                <tr>
+                    <th>Material</th>
+                    <td>{{ orcamento.material }}</td>
+                </tr>
+
+                <tr>
+                    <th>Impressora</th>
+                    <td>{{ orcamento.impressora }}</td>
+                </tr>
+
+                <tr>
+                    <th>Peso</th>
+                    <td>{{ orcamento.peso_peca }} g</td>
+                </tr>
+
+                <tr>
+                    <th>Tempo</th>
+                    <td>{{ orcamento.tempo_impressao_horas }} h</td>
+                </tr>
+
+                <tr>
+                    <th>Quantidade</th>
+                    <td>{{ orcamento.quantidade }}</td>
+                </tr>
+
+            </table>
+
+            <hr>
+
+            <h5 class="mb-3">
+                Custos
+            </h5>
+
+            <table class="table table-striped">
+
+                <tr>
+                    <th>Material</th>
+                    <td>R$ {{ orcamento.custo_material }}</td>
+                </tr>
+
+                <tr>
+                    <th>Máquina</th>
+                    <td>R$ {{ orcamento.custo_maquina }}</td>
+                </tr>
+
+                <tr>
+                    <th>Energia</th>
+                    <td>R$ {{ orcamento.custo_energia }}</td>
+                </tr>
+
+                <tr>
+                    <th>Mão de obra</th>
+                    <td>R$ {{ orcamento.custo_mao_obra }}</td>
+                </tr>
+
+                <tr class="table-warning">
+                    <th>Custo Total</th>
+                    <td>
+                        <strong>
+                            R$ {{ orcamento.custo_total }}
+                        </strong>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="alert alert-success text-center mt-4">
+
+                <h5>Preço de Venda</h5>
+
+                <h2>
+                    R$ {{ orcamento.preco_com_lucro }}
+                </h2>
+
+            </div>
+
+            <div class="d-flex justify-content-between">
+
+                <a href="{% url 'orcamentos' %}"
+                   class="btn btn-secondary">
+
+                    ← Voltar
+
+                </a>
+
+                <a href="{% url 'editar_orcamento' orcamento.id %}"
+                   class="btn btn-primary">
+
+                    ✏️ Editar
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

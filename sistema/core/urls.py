@@ -62,29 +62,37 @@ urlpatterns = [
 
     # ORÇAMENTOS
 
-    path(
-        'orcamentos/',
-        views.orcamentos,
-        name='orcamentos'
-    ),
+   # ORÇAMENTOS
 
-    path(
-         'orcamentos/novo/',
-         views.novo_orcamento,
-        name='novo_orcamento'
-    ),
+path(
+    'orcamentos/',
+    views.orcamentos,
+    name='orcamentos'
+),
 
-    path(
-        'orcamentos/editar/<int:id>/',
-        views.editar_orcamento,
-        name='editar_orcamento'
-    ),
+path(
+    'orcamentos/novo/',
+    views.novo_orcamento,
+    name='novo_orcamento'
+),
 
-    path(
-        'orcamentos/excluir/<int:id>/',
-        views.excluir_orcamento,
-        name='excluir_orcamento'
-    ),
+path(
+    'orcamentos/editar/<int:id>/',
+    views.editar_orcamento,
+    name='editar_orcamento'
+),
+
+path(
+    'orcamentos/<int:id>/',
+    views.detalhe_orcamento,
+    name='detalhe_orcamento'
+),
+
+path(
+    'orcamentos/excluir/<int:id>/',
+    views.excluir_orcamento,
+    name='excluir_orcamento'
+),
 
     path(
         "configuracao/",

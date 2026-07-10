@@ -21,6 +21,43 @@ class MaterialForm(forms.ModelForm):
             "valor",
         ]
 
+        labels = {
+            "nome": "Nome",
+            "marca": "Marca",
+            "tipo": "Tipo",
+            "peso_rolo": "Peso do rolo (g)",
+            "valor": "Valor (R$)",
+        }
+
+        widgets = {
+            "nome": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Ex: PLA Silk"
+            }),
+
+            "marca": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Ex: Voolt3D"
+            }),
+
+            "tipo": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Ex: PLA"
+            }),
+
+            "peso_rolo": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "0.01",
+                "min": "0.01"
+            }),
+
+            "valor": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "0.01",
+                "min": "0.01"
+            }),
+        }
+
 
 class ImpressoraForm(forms.ModelForm):
 
@@ -37,6 +74,53 @@ class ImpressoraForm(forms.ModelForm):
             "ativa",
         ]
 
+        labels = {
+            "nome": "Nome",
+            "marca": "Marca",
+            "modelo": "Modelo",
+            "potencia_watts": "Potência (W)",
+            "valor_equipamento": "Valor do equipamento (R$)",
+            "vida_util_horas": "Vida útil (horas)",
+            "ativa": "Ativa",
+        }
+
+        widgets = {
+            "nome": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Ex: Ender 3 V3"
+            }),
+
+            "marca": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Ex: Creality"
+            }),
+
+            "modelo": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Ex: V3 SE"
+            }),
+
+            "potencia_watts": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "0.01",
+                "min": "0.01"
+            }),
+
+            "valor_equipamento": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "0.01",
+                "min": "0.01"
+            }),
+
+            "vida_util_horas": forms.NumberInput(attrs={
+                "class": "form-control",
+                "min": "1"
+            }),
+
+            "ativa": forms.CheckboxInput(attrs={
+                "class": "form-check-input"
+            }),
+        }
 
 
 class OrcamentoForm(forms.ModelForm):
@@ -99,18 +183,20 @@ class OrcamentoForm(forms.ModelForm):
             }),
 
             "peso_peca": forms.NumberInput(attrs={
-                "class": "form-control",
-                "step": "0.01"
+            "class": "form-control",
+            "step": "0.01",
+            "min": "0.01"
             }),
 
             "tempo_impressao_horas": forms.NumberInput(attrs={
-                "class": "form-control",
-                "step": "0.01"
+            "class": "form-control",
+            "step": "0.01",
+            "min": "0.01"
             }),
 
             "quantidade": forms.NumberInput(attrs={
-                "class": "form-control",
-                "min": "1"
+            "class": "form-control",
+            "min": "1"
             }),
         }
 
@@ -133,13 +219,19 @@ class ConfiguracaoCustoForm(forms.ModelForm):
         }
 
         widgets = {
-            "valor_kwh": forms.NumberInput(attrs={
-                "class": "form-control"
+           "valor_kwh": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "0.01",
+                "min": "0.01"
             }),
             "custo_mao_obra_hora": forms.NumberInput(attrs={
-                "class": "form-control"
+                "class": "form-control",
+                "step": "0.01",
+                "min": "0.00"
             }),
             "margem_lucro": forms.NumberInput(attrs={
-                "class": "form-control"
+                "class": "form-control",
+                "step": "0.01",
+                "min": "0"
             }),
         }

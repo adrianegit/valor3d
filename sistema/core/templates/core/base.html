@@ -9,7 +9,6 @@
 
     <title>Valor3D</title>
 
-
     <!-- Fonte Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -25,51 +24,64 @@
 
 <body>
 
-    <header>
-        <h1>Valor3D</h1>
+    <header class="bg-dark text-white shadow-sm mb-4">
 
-<nav>
+    <div class="container py-3">
 
-    <a href="{% url 'home' %}">
-        🏠 Início
-    </a>
+        <h1 class="h3 mb-3">
+            🖨 Valor3D
+        </h1>
 
-    <a href="{% url 'dashboard' %}">
-        📊 Dashboard
-    </a>
+        <nav class="d-flex gap-3 flex-wrap">
 
-    <a href="{% url 'materiais' %}">
-        🧱 Materiais
-    </a>
+            <a href="{% url 'home' %}">
+                🏠 Início
+            </a>
 
-    <a href="{% url 'impressoras' %}">
-        🖨 Impressoras
-    </a>
+            <a href="{% url 'dashboard' %}">
+                📊 Dashboard
+            </a>
 
-    <a href="{% url 'orcamentos' %}">
-        💰 Orçamentos
-    </a>
+            <a class="text-white text-decoration-none px-2 py-1 rounded"
+            href="{% url 'materiais' %}">
+            🧱 Materiais
+            </a>
 
-    <a href="{% url 'configuracao_custo' %}">
-        ⚙ Custos
-    </a>
+            <a class="text-white text-decoration-none px-2 py-1 rounded"
+            href="{% url 'impressoras' %}">
+                🖨 Impressoras
+            </a>
 
-</nav>
+            <a class="text-white text-decoration-none px-2 py-1 rounded"
+            href="{% url 'orçamentos' %}">
+                💰 Orçamentos
+            </a>
 
-    </header>
+            <a class="text-white text-decoration-none px-2 py-1 rounded"
+            href="{% url 'configuracao_custo' %}">
+                ⚙ Custos
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
 
 
-    <main>
+    <main class="container my-4">
 
-        {% block content %}
+    {% block content %}
 
-        {% endblock %}
+    {% endblock %}
 
     </main>
 
 
-    <footer>
-        <p>Gestão inteligente para impressão 3D.</p>
+    <footer class="text-center text-muted py-4">
+       <p class="mb-0">
+    Gestão inteligente para impressão 3D.
+    </p>
     </footer>
 
 

@@ -16,6 +16,9 @@ class Material(models.Model):
         decimal_places=2
     )
 
+    def __str__(self):
+        return self.nome
+
 class Impressora(models.Model):
     nome = models.CharField(max_length=100)
     marca = models.CharField(max_length=100)
@@ -96,17 +99,20 @@ class Orcamento(models.Model):
         verbose_name="Observações"
     )
 
+class Meta:
+    ordering = ["-data_criacao"]
+
     material = models.ForeignKey(
     Material,
     on_delete=models.CASCADE,
     verbose_name="Material"
-)
-    
+    )
+
     impressora = models.ForeignKey(
     Impressora,
     on_delete=models.CASCADE,
     verbose_name="Impressora"
-)
+    )
 
     peso_peca = models.DecimalField(
         max_digits=8,
@@ -129,7 +135,6 @@ class Orcamento(models.Model):
 
     def __str__(self):
         return f"{self.nome_peca} - {self.material.nome}"
-    
     
     @property
     def custo_material(self):

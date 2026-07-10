@@ -56,7 +56,7 @@ Sprint 6 - Melhorias de UX/UI (em andamento)
 
 Status do Projeto
 Em desenvolvimento
-Previsão de conclusão: 03/08/2026
+Previsão de conclusão: 05/08/2026
 
 
 Desenvolvido por

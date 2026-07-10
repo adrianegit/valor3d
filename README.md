@@ -40,16 +40,24 @@ O projeto utiliza o padrão MVT (Model-View-Template) do framework Django.
 
 ## Desenvolvimento
 Projeto desenvolvido seguindo organização por sprints:
+
 Sprint 1 - Estrutura inicial do projeto
+
 Sprint 2 - Cadastro de materiais
+
 Sprint 3 - Cadastro de impressoras
+
 Sprint 4 - Cadastro de orçamentos
+
 Sprint 5 - Implementação dos cálculos
+
 Sprint 6 - Melhorias de UX/UI (em andamento)
+
 
 Status do Projeto
 Em desenvolvimento
 Previsão de conclusão: 03/08/2026
+
 
 Desenvolvido por
 Adriane Cristina de Souza

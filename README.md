@@ -60,5 +60,7 @@ Previsão de conclusão: 03/08/2026
 
 
 Desenvolvido por
+
 Adriane Cristina de Souza
+
 Projeto desenvolvido durante o estágio obrigatório do curso de Engenharia de Computação - Univesp.

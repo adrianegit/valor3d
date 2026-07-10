@@ -307,6 +307,27 @@ def detalhe_orcamento(request, id):
         }
     )
 
+
+def orcamentos(request):
+
+    orcamentos = Orcamento.objects.all()
+
+    for o in orcamentos:
+        print("========")
+        print("Peça:", o.nome_peca)
+        print("Material:", o.custo_material)
+        print("Máquina:", o.custo_maquina)
+        print("Energia:", o.custo_energia)
+        print("Mão obra:", o.custo_mao_obra)
+
+    return render(
+        request,
+        "core/orcamentos.html",
+        {
+            "orcamentos": orcamentos
+        }
+    )
+
 def configuracao_custo(request):
 
     configuracao = ConfiguracaoCusto.objects.first()

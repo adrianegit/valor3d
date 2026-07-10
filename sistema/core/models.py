@@ -99,9 +99,6 @@ class Orcamento(models.Model):
         verbose_name="Observações"
     )
 
-class Meta:
-    ordering = ["-data_criacao"]
-
     material = models.ForeignKey(
     Material,
     on_delete=models.CASCADE,
@@ -133,22 +130,25 @@ class Meta:
         auto_now_add=True
     )
 
+    class Meta:
+        ordering = ["-data_criacao"]
+
     def __str__(self):
-        return f"{self.nome_peca} - {self.material.nome}"
+            return f"{self.nome_peca} - {self.material.nome}"
     
     @property
     def custo_material(self):
 
         custo_grama = (
-            self.material.valor /
-            self.material.peso_rolo
-        )
+        self.material.valor /
+        self.material.peso_rolo
+    )
 
         return (
         self.peso_peca *
         custo_grama *
         self.quantidade
-        ).quantize(Decimal("0.01"))
+    ).quantize(Decimal("0.01"))
 
     @property
     def custo_maquina(self):

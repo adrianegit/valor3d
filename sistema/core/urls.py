@@ -59,9 +59,6 @@ urlpatterns = [
     ),
 
 
-
-    # ORÇAMENTOS
-
    # ORÇAMENTOS
 
 path(
@@ -83,15 +80,15 @@ path(
 ),
 
 path(
-    'orcamentos/<int:id>/',
-    views.detalhe_orcamento,
-    name='detalhe_orcamento'
-),
-
-path(
     'orcamentos/excluir/<int:id>/',
     views.excluir_orcamento,
     name='excluir_orcamento'
+),
+
+path(
+    'orcamentos/<int:id>/',
+    views.detalhe_orcamento,
+    name='detalhe_orcamento'
 ),
 
     path(

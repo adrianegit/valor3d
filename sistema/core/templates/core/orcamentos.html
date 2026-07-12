@@ -10,38 +10,64 @@
 
 <hr>
 
-<table border="1" cellpadding="8">
+<table class="table table-striped table-hover">
 
-    <tr>
-        <th>Material</th>
-        <th>Impressora</th>
-        <th>Peso (g)</th>
-        <th>Tempo (h)</th>
-        <th>Qtd</th>
-        <th>Material (R$)</th>
-        <th>Máquina (R$)</th>
-        <th>Total (R$)</th>
-        <th>Ações</th>
-    </tr>
+<tr>
+    <th>Peça</th>
+    <th>Cliente</th>
+    <th>Status</th>
+    <th>Material</th>
+    <th>Impressora</th>
+    <th>Peso (g)</th>
+    <th>Tempo (h)</th>
+    <th>Qtd</th>
+    <th>Custo (R$)</th>
+    <th>Venda (R$)</th>
+    <th>Ações</th>
+</tr>
 
     {% for o in orcamentos %}
 
-    <tr>
-        <td>{{ o.material.nome }}</td>
-        <td>{{ o.impressora.nome }}</td>
-        <td>{{ o.peso_peca }}</td>
-        <td>{{ o.tempo_impressao_horas }}</td>
-        <td>{{ o.quantidade }}</td>
-        <td>{{ o.custo_material }}</td>
-        <td>{{ o.custo_maquina }}</td>
-        <td><strong>{{ o.custo_total }}</strong></td>
+ <tr>
+    <td>{{ o.nome_peca }}</td>
+    <td>{{ o.cliente }}</td>
+    <td>{{ o.get_status_display }}</td>
 
-        <td>
-            <a href="{% url 'editar_orcamento' o.id %}">Editar</a>
-            |
-            <a href="{% url 'excluir_orcamento' o.id %}">Excluir</a>
-        </td>
-    </tr>
+    <td>{{ o.material.nome }}</td>
+    <td>{{ o.impressora.nome }}</td>
+    <td>{{ o.peso_peca }}</td>
+    <td>{{ o.tempo_impressao_horas }}</td>
+    <td>{{ o.quantidade }}</td>
+
+    <td>
+        <strong>R$ {{ o.custo_total }}</strong>
+    </td>
+
+    <td>
+        <strong class="text-success">
+            R$ {{ o.preco_com_lucro }}
+        </strong>
+    </td>
+
+    <td>
+
+    <a href="{% url 'detalhe_orcamento' o.id %}"
+       class="btn btn-sm btn-info">
+        👁 Detalhes
+    </a>
+
+    <a href="{% url 'editar_orcamento' o.id %}"
+       class="btn btn-sm btn-primary">
+        ✏️ Editar
+    </a>
+
+    <a href="{% url 'excluir_orcamento' o.id %}"
+       class="btn btn-sm btn-danger">
+        🗑 Excluir
+    </a>
+
+    </td>
+</tr>
 
     {% empty %}
 

@@ -6,7 +6,7 @@
 
     <div class="card shadow">
 
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-dark text-white">
             <h3 class="mb-0">
                 📄 Resumo do Orçamento
             </h3>
@@ -28,6 +28,29 @@
 
             </div>
 
+        <div class="row mb-4">
+
+            <div class="col-md-4">
+                <strong>👤 Cliente</strong><br>
+
+                {% if orcamento.cliente %}
+                    {{ orcamento.cliente }}
+                {% else %}
+                    <span class="text-muted">Não informado</span>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                <strong>📌 Status</strong><br>
+                {{ orcamento.get_status_display }}
+            </div>
+
+            <div class="col-md-4">
+                <strong>📅 Data</strong><br>
+                {{ orcamento.data_criacao|date:"d/m/Y H:i" }}
+            </div>
+
+        </div>
 
             <h5 class="mb-3">
                 🖨 Informações da Impressão
@@ -94,10 +117,10 @@
                     <td>R$ {{ orcamento.custo_mao_obra }}</td>
                 </tr>
 
-                <tr class="table-warning">
+                <tr class="table-light">
                     <th>Custo Total</th>
                     <td>
-                        <strong>
+                        <strong class="fs-5">
                             R$ {{ orcamento.custo_total }}
                         </strong>
                     </td>

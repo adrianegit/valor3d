@@ -201,16 +201,14 @@ class Orcamento(models.Model):
     @property
     def custo_total(self):
 
-        total_unitario = (
-            self.custo_material +
-            self.custo_maquina +
-            self.custo_energia +
-            self.custo_mao_obra
+        total = (
+        self.custo_material +
+        self.custo_maquina +
+        self.custo_energia +
+        self.custo_mao_obra
         )
 
-        return (
-            total_unitario * self.quantidade
-        ).quantize(Decimal("0.01"))
+        return total.quantize(Decimal("0.01"))
     
     @property
     def preco_com_lucro(self):

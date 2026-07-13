@@ -28,59 +28,85 @@
 
             </div>
 
-        <div class="row mb-4">
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
 
-            <div class="col-md-4">
-                <strong>👤 Cliente</strong><br>
+            <div class="orcamento-info-card">
 
-                {% if orcamento.cliente %}
-                    {{ orcamento.cliente }}
-                {% else %}
-                    <span class="text-muted">Não informado</span>
-                {% endif %}
-            </div>
+                <h6>👤 Cliente</h6>
 
-            <div class="col-md-4">
-                <strong>📌 Status</strong><br>
-                {{ orcamento.get_status_display }}
-            </div>
+                <p>
+                    {% if orcamento.cliente %}
+                        {{ orcamento.cliente }}
+                    {% else %}
+                        <span class="text-muted">
+                            Não informado
+                        </span>
+                    {% endif %}
+                </p>
 
-            <div class="col-md-4">
-                <strong>📅 Data</strong><br>
-                {{ orcamento.data_criacao|date:"d/m/Y H:i" }}
-            </div>
+    </div>
+
+</div>
 
         </div>
+    </div>
+
+
+    <div class="col-md-4">
+        <div class="orcamento-info-card">
+
+            <h6>📌 Status</h6>
+            <p>
+                {{ orcamento.get_status_display }}
+            </p>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-4">
+        <div class="orcamento-info-card">
+
+            <h6>📅 Data</h6>
+            <p>
+                {{ orcamento.data_criacao|date:"d/m/Y H:i" }}
+            </p>
+
+        </div>
+    </div>
+
+</div>
 
             <h5 class="mb-3">
                 🖨 Informações da Impressão
             </h5>
 
 
-            <table class="table table-sm">
+            <table class="table table-sm table-borderless">
 
                 <tr>
-                    <th width="40%">Material</th>
+                    <th class="col-label">Material</th>
                     <td>{{ orcamento.material }}</td>
                 </tr>
 
                 <tr>
-                    <th>Impressora</th>
+                    <th class="col-label">Impressora</th>
                     <td>{{ orcamento.impressora }}</td>
                 </tr>
 
                 <tr>
-                    <th>Peso</th>
+                    <th class="col-label">Peso</th>
                     <td>{{ orcamento.peso_peca }} g</td>
                 </tr>
 
                 <tr>
-                    <th>Tempo</th>
+                    <th class="col-label">Tempo</th>
                     <td>{{ orcamento.tempo_impressao_horas }} h</td>
                 </tr>
 
                 <tr>
-                    <th>Quantidade</th>
+                    <th class="col-label">Quantidade</th>
                     <td>{{ orcamento.quantidade }}</td>
                 </tr>
 
@@ -95,62 +121,75 @@
             </h5>
 
 
-            <table class="table table-sm table-striped">
+            <table class="table table-sm table-borderless">
 
                 <tr>
-                    <th>Material</th>
+                    <th class="col-label">Material</th>
                     <td>R$ {{ orcamento.custo_material }}</td>
                 </tr>
 
                 <tr>
-                    <th>Máquina</th>
+                    <th class="col-label">Máquina</th>
                     <td>R$ {{ orcamento.custo_maquina }}</td>
                 </tr>
 
                 <tr>
-                    <th>Energia</th>
+                    <th class="col-label">Energia</th>
                     <td>R$ {{ orcamento.custo_energia }}</td>
                 </tr>
 
                 <tr>
-                    <th>Mão de obra</th>
+                    <th class="col-label">Mão de Obra</th>
                     <td>R$ {{ orcamento.custo_mao_obra }}</td>
-                </tr>
-
-                <tr class="table-light">
-                    <th>Custo Total</th>
-                    <td>
-                        <strong class="fs-5">
-                            R$ {{ orcamento.custo_total }}
-                        </strong>
-                    </td>
-                </tr>
-
-                <tr class="table-info">
-                    <th>Lucro</th>
-                    <td>
-                        <strong>
-                            R$ {{ orcamento.lucro }}
-                        </strong>
-                    </td>
                 </tr>
 
             </table>
 
+      <div class="row mt-4">
 
-            <div class="alert alert-success text-center mt-4">
+    <div class="col-md-6">
 
-                <h5>
-                    💵 Preço de Venda
-                </h5>
+        <div class="alert alert-light border text-center">
 
-                <h1 class="mb-0">
-                    R$ {{ orcamento.preco_com_lucro }}
-                </h1>
+            <h6 class="text-muted mb-2">
+                💰 Custo Total
+            </h6>
 
+            <div class="custo-total">
+                R$ {{ orcamento.custo_total }}
             </div>
 
+        </div>
 
+    </div>
+
+
+    <div class="col-md-6">
+
+        <div class="alert alert-success text-center">
+
+            <h6 class="mb-2">
+                💵 Preço de Venda
+            </h6>
+
+            <div class="valor-destaque">
+                R$ {{ orcamento.preco_com_lucro }}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+           
+        <p class="text-end text-success fw-semibold">
+
+            Lucro previsto:
+            R$ {{ orcamento.lucro }}
+
+        </p>
+
+            
             <div class="d-flex justify-content-between">
 
                 <a href="{% url 'orcamentos' %}"

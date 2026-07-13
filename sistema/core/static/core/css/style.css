@@ -147,3 +147,75 @@ body {
 .alert h1 {
     font-size: 2.2rem;
 }
+
+/* ==========================
+   DETALHES DO ORÇAMENTO
+========================== */
+
+.orcamento-info-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    height: 100%;
+}
+
+.orcamento-info-card h6 {
+    color: #6b7280;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.orcamento-info-card p {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+
+.valor-destaque {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+
+.custo-total {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* ==========================
+   DETALHES DO ORÇAMENTO
+========================== */
+
+.orcamento-info-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    height: 100%;
+}
+
+.orcamento-info-card h6 {
+    color: #6b7280;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.orcamento-info-card p {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Alinhamento das tabelas de orçamento */
+
+.col-label {
+    width: 40%;
+    font-weight: 600;
+    color: #374151;
+}
+
+.orcamento-info-card table td {
+    text-align: right;
+}

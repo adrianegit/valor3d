@@ -211,11 +211,9 @@ body {
 /* Alinhamento das tabelas de orçamento */
 
 .col-label {
-    width: 40%;
+    width: 180px;
+    min-width: 180px;
     font-weight: 600;
     color: #374151;
 }
 
-.orcamento-info-card table td {
-    text-align: right;
-}

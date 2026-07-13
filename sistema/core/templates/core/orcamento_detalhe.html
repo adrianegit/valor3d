@@ -28,52 +28,26 @@
 
             </div>
 
-    <div class="row g-3 mb-4">
+    <div class="row mb-4">
+
         <div class="col-md-4">
+            <strong>👤 Cliente</strong><br>
 
-            <div class="orcamento-info-card">
-
-                <h6>👤 Cliente</h6>
-
-                <p>
-                    {% if orcamento.cliente %}
-                        {{ orcamento.cliente }}
-                    {% else %}
-                        <span class="text-muted">
-                            Não informado
-                        </span>
-                    {% endif %}
-                </p>
-
+            {% if orcamento.cliente %}
+                {{ orcamento.cliente }}
+            {% else %}
+                <span class="text-muted">Não informado</span>
+            {% endif %}
     </div>
-
-</div>
-
-        </div>
-    </div>
-
 
     <div class="col-md-4">
-        <div class="orcamento-info-card">
-
-            <h6>📌 Status</h6>
-            <p>
-                {{ orcamento.get_status_display }}
-            </p>
-
-        </div>
+        <strong>📌 Status</strong><br>
+        {{ orcamento.get_status_display }}
     </div>
 
-
     <div class="col-md-4">
-        <div class="orcamento-info-card">
-
-            <h6>📅 Data</h6>
-            <p>
-                {{ orcamento.data_criacao|date:"d/m/Y H:i" }}
-            </p>
-
-        </div>
+        <strong>📅 Data</strong><br>
+        {{ orcamento.data_criacao|date:"d/m/Y H:i" }}
     </div>
 
 </div>

@@ -1,28 +1,21 @@
-{% extends 'core/base.html' %}
-
+ {% extends 'base.html' %}
 
 {% block content %}
 
+<div class="container">
 
-<h2>
-Novo Material
-</h2>
+    <div class="page-header">
+        <h2>Materiais</h2>
 
+        <a href="#" class="btn btn-primary">
+            + Novo
+        </a>
+    </div>
 
-<form method="POST">
+    <div class="card">
+        <!-- conteúdo aqui -->
+    </div>
 
-    {% csrf_token %}
-
-
-    {{ form.as_p }}
-
-
-    <button type="submit">
-        Salvar
-    </button>
-
-
-</form>
-
+</div>
 
 {% endblock %}

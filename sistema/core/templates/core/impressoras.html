@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
@@ -30,17 +30,20 @@
                 <h3>{{ impressora.nome }}</h3>
 
                 <p>🏷 {{ impressora.marca }} - {{ impressora.modelo }}</p>
+
                 <p>⚡ {{ impressora.potencia_watts }} W</p>
+
                 <p>💰 R$ {{ impressora.valor_equipamento }}</p>
+
                 <p>⏱ {{ impressora.vida_util_horas }} h</p>
 
-                <p>
-                    {% if impressora.ativa %}
-                        🟢 Ativa
-                    {% else %}
-                        🔴 Inativa
-                    {% endif %}
-                </p>
+    <p>
+        {% if impressora.ativa %}
+        <span class="badge badge-ativo">🟢 Ativa</span>
+        {% else %}
+        <span class="badge badge-inativo">🔴 Inativa</span>
+        {% endif %}
+    </p>
 
                 <div class="actions">
                     <a href="/impressoras/editar/{{ impressora.id }}/">Editar</a> |

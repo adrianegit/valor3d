@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Material, Impressora, Orcamento, ConfiguracaoCusto 
 from .forms import (
     MaterialForm,
@@ -14,7 +16,7 @@ def home(request):
     return render(request, 'core/home.html')
 
 
-
+@login_required
 def dashboard(request):
 
     contexto = {
@@ -32,20 +34,19 @@ def dashboard(request):
 
 
 
+@login_required
 def materiais(request):
-
     materiais = Material.objects.all()
-
     return render(
         request,
-        'core/materiais.html',
+        "core/materiais.html",
         {
-            'materiais': materiais
+            "materiais": materiais
         }
     )
 
 
-
+@login_required
 def impressoras(request):
 
     impressoras = Impressora.objects.all()
@@ -60,20 +61,7 @@ def impressoras(request):
         }
     )
 
-
-def orcamentos(request):
-
-    orcamentos = Orcamento.objects.all()
-
-    return render(
-        request,
-        'core/orcamentos.html',
-        {
-            'orcamentos': orcamentos
-        }
-    )
-
-
+@login_required
 def novo_material(request):
 
     if request.method == 'POST':
@@ -83,6 +71,11 @@ def novo_material(request):
         if form.is_valid():
 
             form.save()
+
+            messages.success(
+                request,
+                "Material cadastrado com sucesso!"
+            )
 
             return redirect('/materiais/')
 
@@ -101,6 +94,8 @@ def novo_material(request):
     )
 
 
+
+@login_required
 def editar_material(request, id):
 
     material = get_object_or_404(Material, id=id)
@@ -117,6 +112,11 @@ def editar_material(request, id):
         if form.is_valid():
 
             form.save()
+
+            messages.success(
+                request,
+                "Material atualizado com sucesso!"
+            )
 
             return redirect('/materiais/')
 
@@ -136,16 +136,21 @@ def editar_material(request, id):
         }
     )
 
-
+@login_required
 def excluir_material(request, id):
 
     material = get_object_or_404(Material, id=id)
 
     material.delete()
 
+    messages.success(
+    request,
+    "Material excluído com sucesso!"
+    )
+
     return redirect('/materiais/')
 
-
+@login_required
 def novo_impressora(request):
 
     if request.method == "POST":
@@ -155,6 +160,11 @@ def novo_impressora(request):
         if form.is_valid():
 
             form.save()
+
+            messages.success(
+                request,
+                "Impressora cadastrada com sucesso!"
+            )
 
             return redirect("/impressoras/")
 
@@ -170,7 +180,7 @@ def novo_impressora(request):
         }
     )
 
-
+@login_required
 def editar_impressora(request, id):
 
     impressora = get_object_or_404(
@@ -189,6 +199,11 @@ def editar_impressora(request, id):
 
             form.save()
 
+            messages.success(
+                request,
+                "Impressora atualizada com sucesso!"
+            )
+
             return redirect("/impressoras/")
 
     else:
@@ -205,7 +220,7 @@ def editar_impressora(request, id):
         }
     )
 
-
+@login_required
 def excluir_impressora(request, id):
 
     impressora = get_object_or_404(
@@ -215,9 +230,14 @@ def excluir_impressora(request, id):
 
     impressora.delete()
 
+    messages.success(
+    request,
+    "Impressora excluída com sucesso!"
+)
+
     return redirect("/impressoras/")
 
-
+@login_required
 def novo_orcamento(request):
 
     if request.method == "POST":
@@ -227,6 +247,11 @@ def novo_orcamento(request):
         if form.is_valid():
 
             orcamento = form.save()
+
+            messages.success(
+                request,
+                "Orçamento cadastrado com sucesso!"
+            )
 
             return redirect(
                 "detalhe_orcamento",
@@ -245,7 +270,7 @@ def novo_orcamento(request):
         }
     )
 
-
+@login_required
 def editar_orcamento(request, id):
 
     orcamento = get_object_or_404(
@@ -264,6 +289,11 @@ def editar_orcamento(request, id):
 
             form.save()
 
+            messages.success(
+            request,
+            "Orçamento atualizado com sucesso!"
+            )
+
             return redirect("/orcamentos/")
 
     else:
@@ -280,7 +310,7 @@ def editar_orcamento(request, id):
         }
     )
 
-
+@login_required
 def excluir_orcamento(request, id):
 
     orcamento = get_object_or_404(
@@ -290,8 +320,14 @@ def excluir_orcamento(request, id):
 
     orcamento.delete()
 
+    messages.success(
+    request,
+    "Orçamento excluído com sucesso!"
+    )
+
     return redirect("orcamentos")
 
+@login_required
 def detalhe_orcamento(request, id):
 
     orcamento = get_object_or_404(
@@ -308,6 +344,7 @@ def detalhe_orcamento(request, id):
     )
 
 
+@login_required
 def orcamentos(request):
 
     orcamentos = Orcamento.objects.all()
@@ -328,6 +365,7 @@ def orcamentos(request):
         }
     )
 
+@login_required
 def configuracao_custo(request):
 
     configuracao = ConfiguracaoCusto.objects.first()
@@ -353,3 +391,4 @@ def configuracao_custo(request):
             "form": form
         }
     )
+

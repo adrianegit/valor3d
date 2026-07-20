@@ -1,13 +1,37 @@
+/* ===============================
+   PALETA OFICIAL VALOR3D
+================================= */
+
+:root {
+
+    --valor3d-primary: #0C4B5A;
+    --valor3d-primary-dark: #083742;
+
+    --valor3d-success: #2E8B57;
+    --valor3d-warning: #DD6B20;
+
+    --background: #F5F7FA;
+
+    --card: #FFFFFF;
+
+    --border: #D6DCE3;
+
+    --text: #2D3748;
+
+}
+
 body {
     font-family: 'Inter', sans-serif;
+    font-size: 16px;
     margin: 0;
-    background: #f4f6f9;
-    color: #333;
+    background: var(--background);
+    color: var(--text);
 }
+
 /* HEADER */
 header {
     padding: 20px;
-    background: #1f2937;
+    background: var(--valor3d-primary);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -46,7 +70,7 @@ footer {
     margin-top: 50px;
     padding: 20px;
     text-align: center;
-    background: #e5e7eb;
+    background: var(--border);
 }
 
 /* GRID DE CARDS */
@@ -58,11 +82,15 @@ footer {
 
 /* CARD IMPRESSORA */
 .printer-card {
-    background: white;
+
+    background: var(--card);
+
     border-radius: 12px;
+
     padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: 0.25s ease;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+
 }
 
 .printer-card:hover {
@@ -93,7 +121,7 @@ footer {
 .actions a {
     text-decoration: none;
     margin-right: 10px;
-    color: #2563eb;
+    color: var(--valor3d-primary);
 }
 
 .actions a:hover {
@@ -153,7 +181,7 @@ body {
 ========================== */
 
 .orcamento-info-card {
-    background: white;
+    background: var(--card);
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -184,30 +212,6 @@ body {
     font-weight: 600;
 }
 
-/* ==========================
-   DETALHES DO ORÇAMENTO
-========================== */
-
-.orcamento-info-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    height: 100%;
-}
-
-.orcamento-info-card h6 {
-    color: #6b7280;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-}
-
-.orcamento-info-card p {
-    margin-bottom: 0;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
 /* Alinhamento das tabelas de orçamento */
 
 .col-label {
@@ -217,3 +221,25 @@ body {
     color: #374151;
 }
 
+.valor-header {
+    background-color: var(--valor3d-primary);
+}
+
+
+.valor-nav-link {
+
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+
+}
+
+.valor-nav-link:hover {
+
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+
+}

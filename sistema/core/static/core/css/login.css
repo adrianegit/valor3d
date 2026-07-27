@@ -1,0 +1,203 @@
+/* ==========================================================
+   Valor3D - Login
+   ========================================================== */
+
+body{
+
+    background:#F5F7FA;
+
+    font-family:'Inter',sans-serif;
+
+}
+
+
+/* Página */
+
+.valor-login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px 20px;
+
+}
+
+
+/* Card */
+
+.valor-login-card{
+
+    width:100%;
+
+    max-width:470px;
+
+    background:#FFFFFF;
+
+    border-radius:22px;
+
+    padding:42px;
+
+    box-shadow:0 18px 45px rgba(0,0,0,.12);
+
+}
+
+
+/* Logo */
+
+.valor-login-brand{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.valor-login-logo{
+
+    width:230px;
+
+    max-width:100%;
+
+    height:auto;
+
+}
+
+
+/* Títulos */
+
+.valor-login-title{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:#2D3748;
+
+    margin-bottom:8px;
+
+    text-align:center;
+
+}
+
+.valor-login-subtitle{
+
+    color:#718096;
+
+    text-align:center;
+
+    margin-bottom:32px;
+
+}
+
+
+/* Formulário */
+
+.valor-login-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.valor-login-field{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.valor-login-field label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#4A5568;
+
+}
+
+
+/* Campos */
+
+.valor-login-field input{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid #D6DCE3;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    transition:.25s;
+
+    outline:none;
+
+    background:#FFF;
+
+}
+
+.valor-login-field input:focus{
+
+    border-color:#0C4B5A;
+
+    box-shadow:0 0 0 4px rgba(12,75,90,.12);
+
+}
+
+
+/* Rodapé */
+
+.valor-login-footer{
+
+    text-align:center;
+
+    margin-top:8px;
+
+}
+
+.valor-login-footer a{
+
+    color:#0C4B5A;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.valor-login-footer a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* Responsivo */
+
+@media(max-width:576px){
+
+    .valor-login-card{
+
+        padding:30px 24px;
+
+    }
+
+    .valor-login-logo{
+
+        width:190px;
+
+    }
+
+}

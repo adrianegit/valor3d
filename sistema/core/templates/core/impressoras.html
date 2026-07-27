@@ -3,64 +3,187 @@
 
 {% block content %}
 
-<div class="container">
+<div class="valor-page-header">
 
-    <div class="page-header">
-        <h2>🖨 Impressoras</h2>
+    <div class="valor-page-title">
 
-        <a href="/impressoras/novo/" class="btn btn-primary">
-            + Nova impressora
-        </a>
+        <h1>
+
+            <i class="bi bi-printer valor-page-icon"></i>
+
+            Impressoras
+
+        </h1>
+
+        <p>
+
+            Gerencie todas as impressoras cadastradas no sistema.
+
+        </p>
+
     </div>
 
-    <div class="cards-grid">
+    <div class="valor-page-actions">
 
-        {% for impressora in impressoras %}
+        <a href="/impressoras/novo/" class="btn btn-primary">
 
-        <div class="printer-card">
+            <i class="bi bi-plus-circle valor-action-icon"></i>
 
-            <img 
-                src="{% static 'core/img/impressoras/default.jpg' %}" 
-                class="printer-img"
-                alt="Impressora"
-            >
+            Nova impressora
 
-            <div class="printer-info">
+        </a>
 
-                <h3>{{ impressora.nome }}</h3>
+    </div>
 
-                <p>🏷 {{ impressora.marca }} - {{ impressora.modelo }}</p>
+</div>
 
-                <p>⚡ {{ impressora.potencia_watts }} W</p>
 
-                <p>💰 R$ {{ impressora.valor_equipamento }}</p>
+<div class="row g-4">
 
-                <p>⏱ {{ impressora.vida_util_horas }} h</p>
+{% for impressora in impressoras %}
 
-    <p>
-        {% if impressora.ativa %}
-        <span class="badge badge-ativo">🟢 Ativa</span>
+<div class="col-lg-6 col-xl-4">
+
+    <div class="valor-card h-100">
+
+        {% if impressora.imagem %}
+
+        <img
+            src="{{ impressora.imagem.url }}"
+            class="printer-img"
+            alt="{{ impressora.nome }}">
+
         {% else %}
-        <span class="badge badge-inativo">🔴 Inativa</span>
+
+        <img
+            src="{% static 'core/img/impressoras/default.png' %}"
+            class="printer-img"
+            alt="Imagem padrão da impressora">
+
         {% endif %}
-    </p>
 
-                <div class="actions">
-                    <a href="/impressoras/editar/{{ impressora.id }}/">Editar</a> |
-                    <a href="/impressoras/excluir/{{ impressora.id }}/">Excluir</a>
-                </div>
+        <div class="p-4">
 
+            <h4>
+
+                {{ impressora.nome }}
+
+            </h4>
+
+            <p class="mb-1">
+
+                <i class="bi bi-box-seam valor-action-icon"></i>
+
+                {{ impressora.marca }} - {{ impressora.modelo }}
+
+            </p>
+
+            <p class="mb-1">
+
+                <i class="bi bi-lightning-charge valor-action-icon"></i>
+
+                {{ impressora.potencia_watts }} W
+
+            </p>
+
+            <p class="mb-1">
+
+                <i class="bi bi-cash-stack valor-action-icon"></i>
+
+                R$ {{ impressora.valor_equipamento }}
+
+            </p>
+
+            <p class="mb-3">
+
+                <i class="bi bi-clock valor-action-icon"></i>
+
+                {{ impressora.vida_util_horas }} horas
+
+            </p>
+
+            {% if impressora.ativa %}
+
+                <span class="badge bg-success">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Ativa
+
+                </span>
+
+            {% else %}
+
+                <span class="badge bg-secondary">
+
+                    <i class="bi bi-x-circle"></i>
+
+                    Inativa
+
+                </span>
+
+            {% endif %}
+
+            <hr>
+
+            <div class="d-flex gap-2 mt-4">
+
+                <a
+                    href="/impressoras/editar/{{ impressora.id }}/"
+                    class="btn btn-outline-primary btn-sm flex-fill">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Editar
+
+                </a>
+
+                <a
+                    href="/impressoras/excluir/{{ impressora.id }}/"
+                    class="btn btn-outline-danger btn-sm flex-fill">
+
+                    <i class="bi bi-trash"></i>
+
+                    Excluir
+
+                </a>
             </div>
 
         </div>
 
-        {% empty %}
+    </div>
 
-        <p>Nenhuma impressora cadastrada.</p>
+</div>
 
-        {% endfor %}
+{% empty %}
+
+<div class="col-12">
+
+    <div class="valor-card text-center py-5">
+
+        <i class="bi bi-printer display-4 mb-3"></i>
+
+        <h4>
+
+            {{ impressora.nome }}
+
+        </h4>
+
+        <p class="printer-subtitle">
+
+            {{ impressora.marca }}
+
+            •
+
+            {{ impressora.modelo }}
+
+        </p>
 
     </div>
+
+</div>
+
+{% endfor %}
 
 </div>
 

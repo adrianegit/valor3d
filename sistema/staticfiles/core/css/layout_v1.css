@@ -1,0 +1,845 @@
+/* ==========================================================
+   VALOR3D DESIGN SYSTEM
+   Sistema de Gestão para Impressão 3D
+
+   Projeto desenvolvido em Django
+   Sprint 8 - UX/UI e Branding
+
+   Organização
+   ----------------------------------------------------------
+   01 - Variáveis
+   02 - Reset
+   03 - Layout
+   04 - Sidebar
+   05 - Branding
+   06 - Navegação
+   07 - Área Principal
+   08 - Cabeçalhos
+   09 - Cards
+   10 - Botões
+   11 - Formulários
+   12 - Tabelas
+   13 - Login
+   14 - Footer
+   15 - Responsivo
+========================================================== */
+
+
+/* ==========================================================
+   01 - VARIÁVEIS
+========================================================== */
+
+:root{
+
+    /* Marca */
+
+    --valor3d-primary: #0C4B5A;
+    --valor3d-primary-light: #0F5C73;
+    --valor3d-primary-dark: #083742;
+
+    /* Cores */
+
+    --background: #F5F7FA;
+    --surface: #FFFFFF;
+
+    --text: #1F2937;
+    --text-light: #6B7280;
+
+    --border: #E5E7EB;
+
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+
+    /* Bordas */
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+
+    /* Sombras */
+
+    --shadow-sm: 0 2px 8px rgba(0,0,0,.05);
+    --shadow-md: 0 8px 24px rgba(0,0,0,.08);
+    --shadow-lg: 0 16px 40px rgba(0,0,0,.12);
+
+    /* Transições */
+
+    --transition: .25s ease;
+
+}
+
+/* ==========================================================
+   02 - RESET
+========================================================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    overflow-x:hidden;
+
+}
+
+/* ==========================================================
+   03 - LAYOUT
+========================================================== */
+
+.valor-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:var(--background);
+
+}
+
+
+/* Sidebar */
+
+.valor-sidebar{
+
+     width:260px;
+
+    flex-shrink:0;
+
+    background:var(--valor3d-primary);
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:24px 18px;
+
+    box-shadow:var(--shadow-md);
+
+}
+
+/* ==========================================
+   04 - Header
+========================================== */
+
+
+/* ==========================================================
+   05 - BRANDING
+========================================================== */
+
+.valor-brand-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:28px 0 36px;
+
+}
+
+.valor-brand {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+}
+
+
+.valor-brand-logo{
+
+    width:230px;
+
+    max-width:none;
+
+}
+
+/* Slogan */
+
+.valor-brand-text{
+
+    margin-top:12px;
+
+    text-align:center;
+
+}
+
+.valor-brand-text p{
+
+    color:rgba(255,255,255,.72);
+
+    font-size:.80rem;
+
+    line-height:1.45;
+
+    margin:0;
+
+    font-weight:500;
+
+}
+
+
+/* Separador visual */
+
+.valor-sidebar-divider {
+
+    height: 1px;
+
+    background: rgba(255,255,255,.12);
+
+    margin: 18px 0 22px;
+
+}
+
+
+/* Menu */
+
+.valor-sidebar-menu {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+
+.valor-sidebar-menu .valor-nav-link{
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:11px 14px;
+
+    border-radius:var(--radius-sm);
+
+    text-decoration:none;
+
+    font-size:.94rem;
+
+    font-weight:600;
+
+    letter-spacing:.2px;
+
+    transition:var(--transition);
+
+}
+
+
+.valor-sidebar-menu .valor-nav-link:hover {
+
+    background: rgba(255,255,255,.12);
+
+    color: white;
+
+}
+
+
+/* Usuário */
+
+.valor-sidebar-user {
+
+    margin-top: auto;
+
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(255,255,255,.14);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.valor-sidebar-user span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:.90rem;
+
+    font-weight:600;
+
+}
+
+
+/* Área principal */
+
+.valor-main{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:100vh;
+
+    background:var(--background);
+
+}
+
+.valor-page-content{
+
+    flex:1;
+
+    padding:32px;
+
+}
+
+
+/* ==========================================================
+   08 - CABEÇALHOS DAS PÁGINAS
+========================================================== */
+
+.valor-page-header{
+
+    display:block;
+
+    margin-bottom:48px;
+
+}
+
+.valor-page-title h1{
+
+    font-size:3rem;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.valor-page-title p{
+
+    font-size:1rem;
+
+    color:var(--text-light);
+
+    margin-top:10px;
+
+    margin-bottom:24px;
+
+    max-width:none;
+
+}
+
+/* ==========================================================
+   09 - CARDS
+========================================================== */
+
+.row.g-4{
+
+    margin-top:20px;
+
+}
+
+.valor-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    border:1px solid #E5E7EB;
+
+    padding:32px 24px;
+
+    transition:.30s;
+
+    box-shadow:0 8px 22px rgba(0,0,0,.05);
+
+}
+
+.valor-card:hover{
+
+    transform:translateY(-8px) scale(1.02);
+
+    box-shadow:0 24px 48px rgba(0,0,0,.12);
+
+}
+
+.valor-card i{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ECF5F6;
+
+    color:#0C4B5A !important;
+
+    font-size:38px;
+
+}
+
+.valor-card h5{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#233142;
+
+}
+
+.valor-card p{
+
+    font-size:18px;
+
+    color:#7A869A;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+   LOGIN VALOR3D
+========================================================== */
+
+.valor-login-page {
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+
+    background:
+        radial-gradient(circle at top,
+            rgba(0,180,180,.12),
+            transparent 40%),
+        linear-gradient(
+            135deg,
+            #0f4c5c 0%,
+            #155e75 45%,
+            #0b3d4b 100%);
+
+}
+
+.valor-login-card {
+
+    width: 100%;
+    max-width: 430px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    box-shadow: var(--shadow-lg);
+
+    transition: transform .25s ease,
+                box-shadow .25s ease;
+
+}
+
+.valor-login-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 24px 60px rgba(0,0,0,.18);
+
+}
+
+.valor-login-brand {
+
+    text-align: center;
+
+    margin-bottom: 28px;
+
+}
+
+.valor-login-logo {
+
+    width: 220px;
+
+    height: auto;
+
+    display: block;
+
+    margin: 0 auto 18px;
+
+}
+
+.valor-login-brand p {
+
+    color: rgba(255,255,255,.82);
+
+    font-size: .92rem;
+
+    line-height: 1.5;
+
+    margin: 0;
+
+}
+
+.valor-login-card h4 {
+
+    text-align: center;
+
+    color: var(--text);
+
+    font-size: 1.8rem;
+
+    font-weight: 700;
+
+    margin-bottom: 30px;
+
+}
+
+.valor-login-field {
+
+    margin-bottom: 22px;
+
+}
+
+.valor-login-field label {
+
+    display: block;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+    color: var(--text);
+
+}
+
+.valor-login-field input {
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    transition: var(--transition);
+
+}
+
+.valor-login-field input:focus {
+
+    outline: none;
+
+    border-color: var(--valor3d-primary);
+
+    box-shadow: 0 0 0 .20rem rgba(12,75,90,.15);
+
+}
+
+.valor-login-button {
+
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    font-size: 1rem;
+
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #0f5c73 0%,
+        #0b7d82 100%);
+
+    transition: all .25s ease;
+
+    box-shadow: 0 8px 20px rgba(15,92,115,.25);
+
+}
+
+.valor-login-button:hover {
+
+    transform: translateY(-3px);
+
+    background: linear-gradient(
+        135deg,
+        #0c4e61 0%,
+        #08696d 100%);
+
+    box-shadow: 0 12px 28px rgba(15,92,115,.35);
+
+}
+
+.valor-login-link {
+
+    text-align: center;
+
+    margin-top: 24px;
+
+}
+
+.valor-login-link a {
+
+    color: var(--valor3d-primary);
+
+    text-decoration: none;
+
+    font-weight: 500;
+
+}
+
+.valor-login-link a:hover {
+
+    text-decoration: underline;
+
+}
+
+/* ==========================================================
+   HOME
+========================================================== */
+
+.valor-card{
+
+    transition:all .25s ease;
+
+}
+
+.valor-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.valor-card i{
+
+    color:var(--valor3d-primary);
+
+    transition:.25s;
+
+}
+
+.valor-card:hover i{
+
+    transform:scale(1.08);
+
+}
+
+.valor-card h5{
+
+    color:var(--text);
+
+    font-weight:600;
+
+}
+
+.valor-card p{
+
+    font-size:.92rem;
+
+}
+
+a.text-decoration-none{
+
+    color:inherit;
+
+}
+
+a.text-decoration-none:hover{
+
+    color:inherit;
+
+}
+
+/* ==========================================================
+   ÍCONES
+========================================================== */
+
+.valor-page-icon{
+    font-size:1rem;
+    margin-right:.5rem;
+    vertical-align:middle;
+}
+
+.valor-action-icon{
+    font-size:.95rem;
+    margin-right:.35rem;
+}
+
+.valor-menu-icon{
+
+    width:20px;
+
+    text-align:center;
+
+    font-size:1rem;
+
+    color:rgba(255,255,255,.92);
+
+}
+
+/* ==========================================================
+   IMPRESSORAS
+========================================================== */
+
+.printer-img{
+
+    width:100%;
+
+    height:190px;
+
+    object-fit:contain;
+
+    background:#f8fafc;
+
+    padding:20px;
+
+    border-radius:18px 18px 0 0;
+
+    border-bottom:1px solid #E5E7EB;
+
+}
+
+.valor-card h4{
+
+    font-size:1.25rem;
+
+    font-weight:700;
+
+    margin-bottom:.4rem;
+
+}
+
+.valor-card .badge{
+
+    font-size:.80rem;
+
+    padding:.55rem .9rem;
+
+    border-radius:999px;
+
+}
+
+.valor-card hr{
+
+    margin:20px 0;
+
+}
+
+.valor-btn-primary {
+    background: #0C4B5A;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 22px;
+    font-weight: 600;
+    transition: .25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.valor-btn-primary:hover {
+    background: #0F5C73;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(12,75,90,.18);
+}
+
+/* ===========================
+   BOTÃO PRINCIPAL
+=========================== */
+
+.valor-btn-primary{
+
+    background:#0C4B5A;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:16px 32px;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:.7rem;
+
+    transition:.30s;
+
+    box-shadow:0 8px 22px rgba(12,75,90,.22);
+
+}
+
+.valor-btn-primary:hover{
+
+    background:#0F5C73;
+
+    color:#fff;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 14px 30px rgba(12,75,90,.28);
+
+}

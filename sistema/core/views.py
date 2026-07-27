@@ -21,17 +21,23 @@ def dashboard(request):
 
     contexto = {
 
-        'total_materiais': Material.objects.count(),
+        "total_materiais": Material.objects.count(),
 
-        'total_impressoras': Impressora.objects.count(),
+        "total_impressoras": Impressora.objects.count(),
 
-        'total_orcamentos': Orcamento.objects.count(),
+        "total_orcamentos": Orcamento.objects.count(),
+
+        "ultimos_orcamentos": Orcamento.objects.order_by("-data_criacao")[:5],
+
+        "custos_configurados": ConfiguracaoCusto.objects.exists(),
 
     }
 
-
-    return render(request, 'core/dashboard.html', contexto)
-
+    return render(
+        request,
+        "core/dashboard.html",
+        contexto
+    )
 
 
 @login_required

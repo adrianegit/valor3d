@@ -1,48 +1,135 @@
 {% extends 'base.html' %}
 
+{% block title %}Início | Valor3D{% endblock %}
+
 {% block content %}
 
-{% if user.is_authenticated %}
+<div class="mb-5">
 
-<h1>
+    <h1 class="valor-title">
+        Bem-vinda, {{ user.first_name|default:user.username }}
+    </h1>
 
-    Bem-vindo, {{ user.username|title }}!
+    <p class="valor-subtitle">
+        Gerencie sua operação de impressão 3D de forma simples, rápida e organizada.
+    </p>
 
-</h1>
+    <a href="{% url 'novo_orcamento' %}" class="valor-btn-primary mt-3 d-inline-flex align-items-center">
 
-<p>
+        <i class="bi bi-plus-circle me-2"></i>
 
-    Sistema de gestão inteligente para impressão 3D.
+        Novo orçamento
 
-</p>
+    </a>
 
-<a href="{% url 'novo_orcamento' %}"
-   class="btn btn-primary">
+</div>
 
-    Novo orçamento
 
-</a>
 
-{% else %}
+<div class="row g-4">
 
-<h1>
+    <div class="col-xl-3 col-md-6">
 
-    Bem-vindo ao Valor3D
+        <a href="{% url 'materiais' %}" class="text-decoration-none">
 
-</h1>
+            <div class="valor-card">
 
-<p>
+                <div class="valor-card-icon">
 
-    Sistema de gestão inteligente para impressão 3D.
+                    <i class="bi bi-box-seam"></i>
 
-</p>
+                </div>
 
-<p class="text-muted">
+                <h5>Materiais</h5>
 
-    Faça login para acessar seus orçamentos.
+                <p>
+                    Cadastre e gerencie seus filamentos.
+                </p>
 
-</p>
+            </div>
 
-{% endif %}
+        </a>
+
+    </div>
+
+
+
+    <div class="col-xl-3 col-md-6">
+
+        <a href="{% url 'impressoras' %}" class="text-decoration-none">
+
+            <div class="valor-card">
+
+                <div class="valor-card-icon">
+
+                    <i class="bi bi-printer"></i>
+
+                </div>
+
+                <h5>Impressoras</h5>
+
+                <p>
+                    Gerencie seus equipamentos.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-xl-3 col-md-6">
+
+        <a href="{% url 'orcamentos' %}" class="text-decoration-none">
+
+            <div class="valor-card">
+
+                <div class="valor-card-icon">
+
+                    <i class="bi bi-file-earmark-text"></i>
+
+                </div>
+
+                <h5>Orçamentos</h5>
+
+                <p>
+                    Consulte e acompanhe seus projetos.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-xl-3 col-md-6">
+
+        <a href="{% url 'dashboard' %}" class="text-decoration-none">
+
+            <div class="valor-card">
+
+                <div class="valor-card-icon">
+
+                    <i class="bi bi-bar-chart"></i>
+
+                </div>
+
+                <h5>Dashboard</h5>
+
+                <p>
+                    Visualize indicadores do sistema.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
 
 {% endblock %}

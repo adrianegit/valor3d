@@ -2,11 +2,22 @@
 
 {% block content %}
 
-<h2>Orçamentos</h2>
+<div class="page-header">
 
-<a href="{% url 'novo_orcamento' %}">
-    Novo orçamento
-</a>
+    <div>
+        <h2 class="page-title">Orçamentos</h2>
+
+        <p class="page-subtitle">
+            Gerencie os orçamentos cadastrados.
+        </p>
+    </div>
+
+    <a href="{% url 'novo_orcamento' %}" class="btn valor-btn">
+        <i class="bi bi-plus-circle me-2"></i>
+        Novo orçamento
+    </a>
+
+</div>
 
 <hr>
 
@@ -51,20 +62,20 @@
 
     <td>
 
-    <a href="{% url 'detalhe_orcamento' o.id %}"
-       class="btn btn-sm btn-info">
-        👁 Detalhes
-    </a>
+   <a href="{% url 'detalhe_orcamento' o.id %}"
+     class="btn btn-sm btn-info">
+     <i class="bi bi-eye"></i> Detalhes
+   </a>
 
-    <a href="{% url 'editar_orcamento' o.id %}"
-       class="btn btn-sm btn-primary">
-        ✏️ Editar
-    </a>
+   <a href="{% url 'editar_orcamento' o.id %}"
+     class="btn btn-sm btn-primary">
+     <i class="bi bi-pencil-square"></i> Editar
+   </a>
 
-    <a href="{% url 'excluir_orcamento' o.id %}"
-       class="btn btn-sm btn-danger">
-        🗑 Excluir
-    </a>
+   <a href="{% url 'excluir_orcamento' o.id %}"
+     class="btn btn-sm btn-danger">
+     <i class="bi bi-trash"></i> Excluir
+   </a>
 
     </td>
 </tr>

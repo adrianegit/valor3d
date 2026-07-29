@@ -68,6 +68,7 @@ class ImpressoraForm(forms.ModelForm):
             "nome",
             "marca",
             "modelo",
+            "imagem",
             "potencia_watts",
             "valor_equipamento",
             "vida_util_horas",
@@ -137,6 +138,7 @@ class OrcamentoForm(forms.ModelForm):
             "impressora",
             "peso_peca",
             "tempo_impressao_horas",
+            "tempo_mao_obra",
             "quantidade",
         ]
 
@@ -149,6 +151,7 @@ class OrcamentoForm(forms.ModelForm):
             "impressora": "Impressora",
             "peso_peca": "Peso da peça (g)",
             "tempo_impressao_horas": "Tempo de impressão (h)",
+            "tempo_mao_obra": "Tempo de mão de obra (h)",
             "quantidade": "Quantidade",
         }
 
@@ -192,6 +195,12 @@ class OrcamentoForm(forms.ModelForm):
             "class": "form-control",
             "step": "0.01",
             "min": "0.01"
+            }),
+
+            "tempo_mao_obra": forms.NumberInput(attrs={
+            "class": "form-control",
+            "step": "0.01",
+            "min": "0.00"
             }),
 
             "quantidade": forms.NumberInput(attrs={

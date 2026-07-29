@@ -10,11 +10,17 @@ from .forms import (
 )
 
 
+# ==========================================================
+# HOME
+# ==========================================================
 
 def home(request):
 
     return render(request, 'core/home.html')
 
+# ==========================================================
+# DASHBOARD
+# ==========================================================
 
 @login_required
 def dashboard(request):
@@ -39,26 +45,32 @@ def dashboard(request):
         contexto
     )
 
+# ==========================================================
+# MATERIAIS
+# ==========================================================
 
 @login_required
 def materiais(request):
-    materiais = Material.objects.all()
-    return render(
-        request,
-        "core/materiais.html",
-        {
-            "materiais": materiais
-        }
-    )
 
+    contexto = {
+    "materiais": Material.objects.all()
+}
+
+    return render(
+    request,
+    "core/materiais.html",
+    contexto
+)
+
+# ==========================================================
+# IMPRESSORAS
+# ==========================================================
 
 @login_required
 def impressoras(request):
 
     impressoras = Impressora.objects.all()
-
-    print("IMPRESSORAS:", impressoras)
-
+    
     return render(
         request,
         'core/impressoras.html',
@@ -83,7 +95,7 @@ def novo_material(request):
                 "Material cadastrado com sucesso!"
             )
 
-            return redirect('/materiais/')
+            return redirect("materiais")
 
 
     else:
@@ -124,7 +136,7 @@ def editar_material(request, id):
                 "Material atualizado com sucesso!"
             )
 
-            return redirect('/materiais/')
+            return redirect("materiais")
 
 
     else:
@@ -154,14 +166,17 @@ def excluir_material(request, id):
     "Material excluído com sucesso!"
     )
 
-    return redirect('/materiais/')
+    return redirect("materiais")
 
 @login_required
-def novo_impressora(request):
+def nova_impressora(request):
 
     if request.method == "POST":
 
-        form = ImpressoraForm(request.POST)
+        form = ImpressoraForm(
+            request.POST,
+            request.FILES
+        )
 
         if form.is_valid():
 
@@ -172,7 +187,7 @@ def novo_impressora(request):
                 "Impressora cadastrada com sucesso!"
             )
 
-            return redirect("/impressoras/")
+            return redirect("impressoras")
 
     else:
 
@@ -198,8 +213,9 @@ def editar_impressora(request, id):
 
         form = ImpressoraForm(
             request.POST,
+            request.FILES,
             instance=impressora
-        )
+    )
 
         if form.is_valid():
 
@@ -210,7 +226,7 @@ def editar_impressora(request, id):
                 "Impressora atualizada com sucesso!"
             )
 
-            return redirect("/impressoras/")
+            return redirect("impressoras")
 
     else:
 
@@ -241,7 +257,11 @@ def excluir_impressora(request, id):
     "Impressora excluída com sucesso!"
 )
 
-    return redirect("/impressoras/")
+    return redirect("impressoras")
+
+# ==========================================================
+# ORÇAMENTOS
+# ==========================================================
 
 @login_required
 def novo_orcamento(request):
@@ -300,7 +320,7 @@ def editar_orcamento(request, id):
             "Orçamento atualizado com sucesso!"
             )
 
-            return redirect("/orcamentos/")
+            return redirect("orcamentos")
 
     else:
 
@@ -355,14 +375,6 @@ def orcamentos(request):
 
     orcamentos = Orcamento.objects.all()
 
-    for o in orcamentos:
-        print("========")
-        print("Peça:", o.nome_peca)
-        print("Material:", o.custo_material)
-        print("Máquina:", o.custo_maquina)
-        print("Energia:", o.custo_energia)
-        print("Mão obra:", o.custo_mao_obra)
-
     return render(
         request,
         "core/orcamentos.html",
@@ -370,6 +382,10 @@ def orcamentos(request):
             "orcamentos": orcamentos
         }
     )
+
+# ==========================================================
+# CONFIGURAÇÃO DE CUSTOS
+# ==========================================================
 
 @login_required
 def configuracao_custo(request):

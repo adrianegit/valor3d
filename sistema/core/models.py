@@ -7,6 +7,7 @@ class Material(models.Model):
     tipo = models.CharField(max_length=50)
 
     peso_rolo = models.DecimalField(
+        "Peso do rolo (g)",
         max_digits=8,
         decimal_places=2
     )
@@ -15,6 +16,10 @@ class Material(models.Model):
         max_digits=10,
         decimal_places=2
     )
+
+    class Meta:
+        verbose_name = "Material"
+        verbose_name_plural = "Materiais"
 
     def __str__(self):
         return self.nome
@@ -41,6 +46,10 @@ class Impressora(models.Model):
 
     ativa = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name = "Impressora"
+        verbose_name_plural = "Impressoras"
+
     def __str__(self):
         return self.nome
 
@@ -60,6 +69,10 @@ class ConfiguracaoCusto(models.Model):
         max_digits=5,
         decimal_places=2
     )
+
+    class Meta:
+        verbose_name = "Configuração de custo"
+        verbose_name_plural = "Configurações de custo"
 
     def __str__(self):
         return "Configuração de custo"
@@ -121,6 +134,13 @@ class Orcamento(models.Model):
         decimal_places=2
     )
 
+    tempo_mao_obra = models.DecimalField(
+    max_digits=4,
+    decimal_places=2,
+    default=1.00,
+    verbose_name="Tempo de mão de obra (horas)"
+    )
+
     quantidade = models.PositiveIntegerField(
     default=1,
     verbose_name="Quantidade"
@@ -132,6 +152,8 @@ class Orcamento(models.Model):
 
     class Meta:
         ordering = ["-data_criacao"]
+        verbose_name = "Orçamento"
+        verbose_name_plural = "Orçamentos"
 
     def __str__(self):
             return f"{self.nome_peca} - {self.material.nome}"
@@ -194,7 +216,7 @@ class Orcamento(models.Model):
             return Decimal("0.00")
 
         return (
-            self.tempo_impressao_horas *
+            self.tempo_mao_obra *
             config.custo_mao_obra_hora
         ).quantize(Decimal("0.01"))
 

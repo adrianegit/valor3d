@@ -283,14 +283,51 @@ a{
 
 .valor-page-header{
 
-    display:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:36px 40px 0 40px;
 
 }
 
+.valor-page-title h1{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-size:2.2rem;
+    font-weight:700;
+
+    color:var(--valor-primary);
+
+    margin:0;
+
+}
+
+.valor-page-title p{
+
+    margin-top:8px;
+
+    font-size:.98rem;
+
+    color:var(--valor-text-light);
+
+    line-height:1.5;
+
+}
+
+.valor-page-actions{
+
+    display:flex;
+    align-items:center;
+
+}
 
 .valor-page-content{
 
-    padding:36px 40px;
+    padding:24px 40px 40px;
 
 }
 
@@ -378,14 +415,19 @@ a{
     display:inline-flex;
 
     align-items:center;
+    justify-content:center;
 
     gap:10px;
 
-    padding:12px 22px;
+    padding:13px 26px;
+
+    font-size:.95rem;
 
     background:var(--valor-primary);
 
     color:#FFF;
+
+    border:none;
 
     border-radius:12px;
 

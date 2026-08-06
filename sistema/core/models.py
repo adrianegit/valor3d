@@ -145,6 +145,42 @@ class Orcamento(models.Model):
     default=1,
     verbose_name="Quantidade"
     )
+
+    # ==========================================================
+# Snapshot dos custos utilizados no orçamento
+# ==========================================================
+
+    valor_material_utilizado = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        verbose_name="Valor do material utilizado"
+    )
+
+    valor_kwh_utilizado = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        verbose_name="Valor do kWh utilizado"
+    )
+
+    custo_mao_obra_hora_utilizado = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        verbose_name="Custo da mão de obra utilizado"
+    )
+
+    margem_lucro_utilizada = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        verbose_name="Margem de lucro utilizada"
+    )
     
     data_criacao = models.DateTimeField(
         auto_now_add=True
@@ -161,16 +197,22 @@ class Orcamento(models.Model):
     @property
     def custo_material(self):
 
+        valor_material = (
+            self.valor_material_utilizado
+            if self.valor_material_utilizado is not None
+            else self.material.valor
+        )
+
         custo_grama = (
-        self.material.valor /
-        self.material.peso_rolo
-    )
+            valor_material /
+            self.material.peso_rolo
+        )
 
         return (
-        self.peso_peca *
-        custo_grama *
-        self.quantidade
-    ).quantize(Decimal("0.01"))
+            self.peso_peca *
+            custo_grama *
+            self.quantidade
+        ).quantize(Decimal("0.01"))
 
     @property
     def custo_maquina(self):
@@ -181,7 +223,8 @@ class Orcamento(models.Model):
         )
 
         return (
-            self.tempo_impressao_horas * custo_hora
+            self.tempo_impressao_horas *
+            custo_hora
         ).quantize(Decimal("0.01"))
     
     @property
@@ -189,8 +232,13 @@ class Orcamento(models.Model):
 
         config = ConfiguracaoCusto.objects.first()
 
-        if not config:
-            return Decimal("0.00")
+        valor_kwh = (
+            self.valor_kwh_utilizado
+            if self.valor_kwh_utilizado is not None
+            else (
+                config.valor_kwh if config else Decimal("0.00")
+            )
+        )
 
         potencia_kw = (
             self.impressora.potencia_watts /
@@ -204,7 +252,7 @@ class Orcamento(models.Model):
 
         return (
             consumo *
-            config.valor_kwh
+            valor_kwh
         ).quantize(Decimal("0.01"))
     
     @property
@@ -212,12 +260,17 @@ class Orcamento(models.Model):
 
         config = ConfiguracaoCusto.objects.first()
 
-        if not config:
-            return Decimal("0.00")
+        valor_mao_obra = (
+            self.custo_mao_obra_hora_utilizado
+            if self.custo_mao_obra_hora_utilizado is not None
+            else (
+                config.custo_mao_obra_hora if config else Decimal("0.00")
+            )
+        )
 
         return (
             self.tempo_mao_obra *
-            config.custo_mao_obra_hora
+            valor_mao_obra
         ).quantize(Decimal("0.01"))
 
     @property
@@ -237,12 +290,17 @@ class Orcamento(models.Model):
 
         config = ConfiguracaoCusto.objects.first()
 
-        if not config:
-            return self.custo_total
+        margem = (
+            self.margem_lucro_utilizada
+            if self.margem_lucro_utilizada is not None
+            else (
+                config.margem_lucro if config else Decimal("0.00")
+            )
+        )
 
         lucro = (
             self.custo_total *
-            (config.margem_lucro / Decimal("100"))
+            (margem / Decimal("100"))
         )
 
         return (

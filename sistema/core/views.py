@@ -272,7 +272,33 @@ def novo_orcamento(request):
 
         if form.is_valid():
 
-            orcamento = form.save()
+            # Cria o orçamento sem gravar no banco
+            orcamento = form.save(commit=False)
+
+            # Obtém a configuração atual
+            config = ConfiguracaoCusto.objects.first()
+
+            # Congela os valores utilizados
+            orcamento.valor_material_utilizado = (
+                orcamento.material.valor
+            )
+
+            if config:
+
+                orcamento.valor_kwh_utilizado = (
+                    config.valor_kwh
+                )
+
+                orcamento.custo_mao_obra_hora_utilizado = (
+                    config.custo_mao_obra_hora
+                )
+
+                orcamento.margem_lucro_utilizada = (
+                    config.margem_lucro
+                )
+
+            # Salva o orçamento
+            orcamento.save()
 
             messages.success(
                 request,

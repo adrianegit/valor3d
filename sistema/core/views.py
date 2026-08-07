@@ -293,6 +293,10 @@ def novo_orcamento(request):
                     config.custo_mao_obra_hora
                 )
 
+                orcamento.custo_mao_obra_acabamento_hora_utilizado = (
+                    config.custo_mao_obra_acabamento_hora
+                )
+
                 orcamento.margem_lucro_utilizada = (
                     config.margem_lucro
                 )

@@ -79,6 +79,7 @@ class ImpressoraForm(forms.ModelForm):
             "nome": "Nome",
             "marca": "Marca",
             "modelo": "Modelo",
+            "imagem": "Imagem da impressora",
             "potencia_watts": "Potência (W)",
             "valor_equipamento": "Valor do equipamento (R$)",
             "vida_util_horas": "Vida útil (horas)",
@@ -99,6 +100,10 @@ class ImpressoraForm(forms.ModelForm):
             "modelo": forms.TextInput(attrs={
                 "class": "form-control",
                 "placeholder": "Ex: V3 SE"
+            }),
+
+            "imagem": forms.ClearableFileInput(attrs={
+                "class": "form-control"
             }),
 
             "potencia_watts": forms.NumberInput(attrs={
@@ -139,6 +144,7 @@ class OrcamentoForm(forms.ModelForm):
             "peso_peca",
             "tempo_impressao_horas",
             "tempo_mao_obra",
+            "tempo_acabamento",
             "quantidade",
         ]
 
@@ -150,8 +156,9 @@ class OrcamentoForm(forms.ModelForm):
             "material": "Material",
             "impressora": "Impressora",
             "peso_peca": "Peso da peça (g)",
-            "tempo_impressao_horas": "Tempo de impressão (h)",
-            "tempo_mao_obra": "Tempo de mão de obra (h)",
+            "tempo_impressao_horas": "Tempo de impressão (horas)",
+            "tempo_mao_obra": "Tempo de preparação (horas)",
+            "tempo_acabamento": "Tempo de acabamento (horas)",
             "quantidade": "Quantidade",
         }
 
@@ -203,6 +210,12 @@ class OrcamentoForm(forms.ModelForm):
             "min": "0.00"
             }),
 
+            "tempo_acabamento": forms.NumberInput(attrs={
+            "class": "form-control",
+            "step": "0.01",
+            "min": "0.00"
+            }),
+
             "quantidade": forms.NumberInput(attrs={
             "class": "form-control",
             "min": "1"
@@ -218,12 +231,14 @@ class ConfiguracaoCustoForm(forms.ModelForm):
         fields = [
             "valor_kwh",
             "custo_mao_obra_hora",
+            "custo_mao_obra_acabamento_hora",
             "margem_lucro",
         ]
 
         labels = {
             "valor_kwh": "Valor do kWh (R$)",
-            "custo_mao_obra_hora": "Mão de obra por hora (R$)",
+            "custo_mao_obra_hora": "Custo da hora de preparação (R$/hora)",
+            "custo_mao_obra_acabamento_hora": "Custo da hora de acabamento (R$/hora)",
             "margem_lucro": "Margem de lucro (%)",
         }
 
@@ -237,6 +252,11 @@ class ConfiguracaoCustoForm(forms.ModelForm):
                 "class": "form-control",
                 "step": "0.01",
                 "min": "0.00"
+            }),
+            "custo_mao_obra_acabamento_hora": forms.NumberInput(attrs={
+            "class": "form-control",
+            "step": "0.01",
+            "min": "0.00"
             }),
             "margem_lucro": forms.NumberInput(attrs={
                 "class": "form-control",

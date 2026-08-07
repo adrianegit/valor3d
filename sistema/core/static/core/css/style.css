@@ -797,6 +797,28 @@ body {
 }
 
 /* ----------------------------------------------------------
+   Botão Info (Detalhes)
+---------------------------------------------------------- */
+
+.valor-btn-info{
+
+    background:#FFF;
+
+    color:#0EA5E9;
+
+    border:1px solid #0EA5E9;
+
+}
+
+.valor-btn-info:hover{
+
+    background:#0EA5E9;
+
+    color:#FFF;
+
+}
+
+/* ----------------------------------------------------------
    Botão Danger
 ---------------------------------------------------------- */
 
@@ -858,3 +880,400 @@ body {
 
 }
 
+/* ==========================================================
+   DETALHE DO ORÇAMENTO
+========================================================== */
+
+.valor-card-header{
+
+    background: var(--valor-primary);
+
+    color: #fff;
+
+    padding: 22px 30px;
+
+    border-radius: 16px 16px 0 0;
+
+}
+
+.valor-card-body{
+
+    padding: 30px;
+
+}
+
+/* ==========================================================
+   DETALHE DO ORÇAMENTO
+========================================================== */
+
+.valor-detail{
+
+    max-width:1400px;
+
+    margin:auto;
+
+}
+
+.valor-detail-header{
+
+    background:var(--valor-primary);
+
+    color:#fff;
+
+    padding:24px 32px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.valor-detail-header h1{
+
+    font-size:2rem;
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.valor-detail-header p{
+
+    margin-top:6px;
+
+    opacity:.85;
+
+}
+
+.valor-status{
+
+    background:#fff;
+
+    color:var(--valor-primary);
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+}
+
+.valor-piece-card{
+
+    background:#ffffff;
+
+    border-left:6px solid var(--valor-primary);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    margin-bottom:30px;
+
+    width:100%;
+
+}
+
+.valor-piece-card small{
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    color:#7A8794;
+
+    letter-spacing:.12em;
+
+}
+
+.valor-piece-card h2{
+
+    font-size:2.5rem;
+
+    font-weight:700;
+
+    color:var(--valor-primary);
+
+    margin-top:8px;
+
+}
+
+.valor-piece-info{
+
+    display:flex;
+
+    gap:120px;
+
+    align-items:flex-start;
+
+}
+
+.valor-piece-info span{
+
+    display:block;
+
+    color:#6b7280;
+
+    margin-bottom:5px;
+
+}
+
+.valor-piece-info strong{
+
+    font-size:1.05rem;
+
+    color:#243746;
+
+}
+
+/* ==========================================================
+   GRID DO DETALHE DO ORÇAMENTO
+========================================================== */
+
+.valor-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+
+.valor-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:18px 24px;
+
+    min-height:auto;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+    border:1px solid #E5E7EB;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.valor-card h3{
+
+    color:var(--valor-primary);
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #E5E7EB;
+
+     justify-content:center;
+
+}
+
+.valor-info-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    width:100%;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #ECEFF3;
+
+}
+
+.valor-info-item span{
+
+    color:#6B7280;
+
+    justify-self:start;
+
+    white-space:nowrap;
+
+    margin-left:0 !important;
+
+}
+
+.valor-info-item strong{
+
+    justify-self:end;
+
+    font-weight:700;
+
+    color:#23313F;
+
+    margin-right:0 !important;
+
+}
+
+/* ==========================================================
+   RESUMO FINANCEIRO
+========================================================== */
+
+.valor-summary{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    margin:35px 0;
+
+}
+
+.valor-summary-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    text-align:center;
+
+    border:2px solid #D8E3EA;
+
+    box-shadow:0 12px 30px rgba(12,75,90,.08);
+
+}
+
+.valor-summary-card span{
+
+    display:block;
+
+    color:#64748B;
+
+    text-transform:uppercase;
+
+    font-size:.82rem;
+
+    font-weight:700;
+
+    letter-spacing:.10em;
+
+    margin-bottom:15px;
+
+}
+
+.valor-summary-card h2{
+
+    color:var(--valor-primary);
+
+    font-size:3.5rem;
+
+    font-weight:800;
+
+    margin:0;
+
+}
+
+.valor-summary-card.success{
+
+    background:#ECFDF5;
+
+    border-color:#86EFAC;
+
+}
+
+.valor-summary-card.success h2{
+
+    color:#15803D;
+
+}
+
+.valor-profit{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#15803D;
+
+    font-size:1.05rem;
+
+    font-weight:600;
+
+    margin-bottom:35px;
+
+}
+
+.valor-profit strong{
+
+    font-size:1.3rem;
+
+}
+
+.valor-actions{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:20px;
+
+}
+
+.valor-label{
+
+    font-size:.92rem;
+
+    color:#64748B;
+
+    font-weight:600;
+
+}
+
+.valor-value{
+
+    justify-self:end;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    color:#23313F;
+
+}

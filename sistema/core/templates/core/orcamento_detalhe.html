@@ -2,192 +2,272 @@
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="valor-detail">
 
-    <div class="card shadow">
+    <!-- ========================================= -->
+    <!-- Cabeçalho -->
+    <!-- ========================================= -->
 
-        <div class="card-header bg-dark text-white">
-            <h3 class="mb-0">
-                📄 Resumo do Orçamento
+    <div class="valor-detail-header">
+
+        <div>
+
+            <h1>
+
+                <i class="bi bi-file-earmark-text"></i>
+
+                Resumo do Orçamento
+
+            </h1>
+
+            <p>
+
+                Visualização completa do orçamento.
+
+            </p>
+
+        </div>
+
+        <span class="valor-status">
+
+            {{ orcamento.get_status_display }}
+
+        </span>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- Nome da peça -->
+    <!-- ========================================= -->
+
+    <div class="valor-piece-card">
+
+        <div>
+
+            <small>Nome da peça</small>
+
+            <h2>{{ orcamento.nome_peca }}</h2>
+
+        </div>
+
+        <div class="valor-piece-info">
+
+            <div>
+
+                <span>Cliente</span>
+
+                <strong>
+
+                    {% if orcamento.cliente %}
+                        {{ orcamento.cliente }}
+                    {% else %}
+                        Não informado
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span>Data</span>
+
+                <strong>
+
+                    {{ orcamento.data_criacao|date:"d/m/Y H:i" }}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- Informações + Custos -->
+    <!-- ========================================= -->
+
+    <div class="valor-grid">
+
+        <!-- ========================= -->
+        <!-- Informações -->
+        <!-- ========================= -->
+
+        <div class="valor-card">
+
+            <h3>
+
+                <i class="bi bi-printer"></i>
+
+                Informações da Impressão
+
             </h3>
-        </div>
 
-
-        <div class="card-body">
-
-
-            <div class="alert alert-primary mb-4">
-
-                <h6 class="mb-2">
-                    🧩 Nome da peça
-                </h6>
-
-                <h4 class="mb-0">
-                    {{ orcamento.nome_peca }}
-                </h4>
-
+            <div class="valor-info-item">
+                <span>Material</span>
+                <strong>{{ orcamento.material }}</strong>
             </div>
 
-    <div class="row mb-4">
+            <div class="valor-info-item">
+                <span>Impressora</span>
+                <strong>{{ orcamento.impressora }}</strong>
+            </div>
 
-        <div class="col-md-4">
-            <strong>👤 Cliente</strong><br>
+            <div class="valor-info-item">
+                <span>Peso</span>
+                <strong>{{ orcamento.peso_peca }} g</strong>
+            </div>
 
-            {% if orcamento.cliente %}
-                {{ orcamento.cliente }}
-            {% else %}
-                <span class="text-muted">Não informado</span>
-            {% endif %}
+            <div class="valor-info-item">
+                <span>Tempo de impressão</span>
+                <strong>{{ orcamento.tempo_impressao_horas }} h</strong>
+            </div>
+
+            <div class="valor-info-item">
+                <span>Tempo de preparação</span>
+                <strong>{{ orcamento.tempo_mao_obra }} h</strong>
+            </div>
+
+            <div class="valor-info-item">
+                <span>Tempo de acabamento</span>
+                <strong>{{ orcamento.tempo_acabamento }} h</strong>
+            </div>
+
+            <div class="valor-info-item">
+                <span>Quantidade</span>
+                <strong>{{ orcamento.quantidade }}</strong>
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Custos -->
+        <!-- ========================= -->
+
+        <div class="valor-card">
+
+            <h3>
+
+                <i class="bi bi-cash-stack"></i>
+
+                Custos
+
+            </h3>
+
+            <div class="valor-info-item">
+                <span>Material</span>
+                <strong>R$ {{ orcamento.custo_material }}</strong>
+            </div>
+
+            <div class="valor-info-item">
+                <span>Máquina</span>
+                <strong>R$ {{ orcamento.custo_maquina }}</strong>
+            </div>
+
+            <div class="valor-info-item">
+                <span>Energia</span>
+                <strong>R$ {{ orcamento.custo_energia }}</strong>
+            </div>
+
+            <div class="valor-info-item">
+                <span>Preparação</span>
+                <strong>R$ {{ orcamento.custo_mao_obra }}</strong>
+            </div>
+
+            <div class="valor-info-item">
+                <span>Acabamento</span>
+                <strong>R$ {{ orcamento.custo_acabamento }}</strong>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="col-md-4">
-        <strong>📌 Status</strong><br>
-        {{ orcamento.get_status_display }}
-    </div>
+     <!-- ========================================= -->
+    <!-- Resumo Financeiro -->
+    <!-- ========================================= -->
 
-    <div class="col-md-4">
-        <strong>📅 Data</strong><br>
-        {{ orcamento.data_criacao|date:"d/m/Y H:i" }}
-    </div>
+    <div class="valor-summary">
 
-</div>
+        <div class="valor-summary-card">
 
-            <h5 class="mb-3">
-                🖨 Informações da Impressão
-            </h5>
+            <span>Custo Total</span>
 
+            <h2>
 
-            <table class="table table-sm table-borderless">
-
-                <tr>
-                    <th class="col-label">Material</th>
-                    <td>{{ orcamento.material }}</td>
-                </tr>
-
-                <tr>
-                    <th class="col-label">Impressora</th>
-                    <td>{{ orcamento.impressora }}</td>
-                </tr>
-
-                <tr>
-                    <th class="col-label">Peso</th>
-                    <td>{{ orcamento.peso_peca }} g</td>
-                </tr>
-
-                <tr>
-                    <th class="col-label">Tempo</th>
-                    <td>{{ orcamento.tempo_impressao_horas }} h</td>
-                </tr>
-
-                <tr>
-                    <th class="col-label">Quantidade</th>
-                    <td>{{ orcamento.quantidade }}</td>
-                </tr>
-
-            </table>
-
-
-            <hr>
-
-
-            <h5 class="mb-3">
-                💰 Custos
-            </h5>
-
-
-            <table class="table table-sm table-borderless">
-
-                <tr>
-                    <th class="col-label">Material</th>
-                    <td>R$ {{ orcamento.custo_material }}</td>
-                </tr>
-
-                <tr>
-                    <th class="col-label">Máquina</th>
-                    <td>R$ {{ orcamento.custo_maquina }}</td>
-                </tr>
-
-                <tr>
-                    <th class="col-label">Energia</th>
-                    <td>R$ {{ orcamento.custo_energia }}</td>
-                </tr>
-
-                <tr>
-                    <th class="col-label">Mão de Obra</th>
-                    <td>R$ {{ orcamento.custo_mao_obra }}</td>
-                </tr>
-
-            </table>
-
-      <div class="row mt-4">
-
-    <div class="col-md-6">
-
-        <div class="alert alert-light border text-center">
-
-            <h6 class="text-muted mb-2">
-                💰 Custo Total
-            </h6>
-
-            <div class="custo-total">
                 R$ {{ orcamento.custo_total }}
-            </div>
+
+            </h2>
 
         </div>
 
-    </div>
+        <div class="valor-summary-card success">
 
+            <span>Preço de Venda</span>
 
-    <div class="col-md-6">
+            <h2>
 
-        <div class="alert alert-success text-center">
-
-            <h6 class="mb-2">
-                💵 Preço de Venda
-            </h6>
-
-            <div class="valor-destaque">
                 R$ {{ orcamento.preco_com_lucro }}
-            </div>
+
+            </h2>
 
         </div>
 
     </div>
 
-</div>
-           
-        <p class="text-end text-success fw-semibold">
+    <!-- ========================================= -->
+    <!-- Lucro -->
+    <!-- ========================================= -->
 
-            Lucro previsto:
+    <div class="valor-profit">
+
+        <i class="bi bi-graph-up-arrow"></i>
+
+        <span>
+
+            Lucro previsto
+
+        </span>
+
+        <strong>
+
             R$ {{ orcamento.lucro }}
 
-        </p>
+        </strong>
 
-            
-            <div class="d-flex justify-content-between">
+    </div>
 
-                <a href="{% url 'orcamentos' %}"
-                   class="btn btn-secondary">
+    <!-- ========================================= -->
+    <!-- Botões -->
+    <!-- ========================================= -->
 
-                    ← Voltar
+    <div class="valor-actions">
 
-                </a>
+        <a href="{% url 'orcamentos' %}"
+           class="valor-btn-outline">
 
+            <i class="bi bi-arrow-left"></i>
 
-                <a href="{% url 'editar_orcamento' orcamento.id %}"
-                   class="btn btn-primary">
+            Voltar
 
-                    ✏️ Editar
+        </a>
 
-                </a>
+        <a href="{% url 'editar_orcamento' orcamento.id %}"
+           class="valor-btn-primary">
 
-            </div>
+            <i class="bi bi-pencil-square"></i>
 
+            Editar
+
+        </a>
 
         </div>
 
     </div>
-
+    
 </div>
 
 {% endblock %}

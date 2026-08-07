@@ -63,21 +63,30 @@
     <td>
 
    <a href="{% url 'detalhe_orcamento' o.id %}"
-     class="valor-btn-info">
-     <i class="bi bi-eye"></i> Detalhes
-   </a>
+        class="valor-btn-info">
+
+        <i class="bi bi-eye"></i>
+
+        Detalhes
+
+    </a>
 
    <a href="{% url 'editar_orcamento' o.id %}"
-     class="valor-btn-outline">
-     <i class="bi bi-pencil-square"></i> Editar
-   </a>
+       class="valor-btn-outline">
 
-   <a href="{% url 'excluir_orcamento' o.id %}"
-     class="valor-btn-danger"
-     onclick="return confirm('Deseja realmente excluir o orçamento da peça: {{ o.nome_peca }}?\n\nEsta ação não poderá ser desfeita.')">
+        <i class="bi bi-pencil-square"></i>
+        Editar
 
-     <i class="bi bi-trash"></i> Excluir
-   </a>
+    </a>
+
+    <a href="{% url 'excluir_orcamento' o.id %}"
+       class="valor-btn-danger"
+       onclick="return confirm('Deseja realmente excluir o orçamento da peça: {{ o.nome_peca }}?\n\nEsta ação não poderá ser desfeita.')">
+
+        <i class="bi bi-trash"></i>
+        Excluir
+
+    </a>
 
     </td>
 </tr>

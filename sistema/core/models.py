@@ -65,6 +65,13 @@ class ConfiguracaoCusto(models.Model):
         decimal_places=2
     )
 
+    custo_mao_obra_acabamento_hora = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        default=0,
+        verbose_name="Custo da mão de obra de acabamento (R$/hora)"
+    )
+
     margem_lucro = models.DecimalField(
         max_digits=5,
         decimal_places=2
@@ -114,14 +121,14 @@ class Orcamento(models.Model):
 
     material = models.ForeignKey(
     Material,
-    on_delete=models.CASCADE,
-    verbose_name="Material"
+        on_delete=models.CASCADE,
+        verbose_name="Material"
     )
 
     impressora = models.ForeignKey(
     Impressora,
-    on_delete=models.CASCADE,
-    verbose_name="Impressora"
+        on_delete=models.CASCADE,
+        verbose_name="Impressora"
     )
 
     peso_peca = models.DecimalField(
@@ -135,15 +142,22 @@ class Orcamento(models.Model):
     )
 
     tempo_mao_obra = models.DecimalField(
-    max_digits=4,
-    decimal_places=2,
-    default=1.00,
-    verbose_name="Tempo de mão de obra (horas)"
+        max_digits=4,
+        decimal_places=2,
+        default=1.00,
+        verbose_name="Tempo de mão de obra (horas)"
+    )
+
+    tempo_acabamento = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        default=0,
+        verbose_name="Tempo de acabamento (horas)"
     )
 
     quantidade = models.PositiveIntegerField(
-    default=1,
-    verbose_name="Quantidade"
+        default=1,
+        verbose_name="Quantidade"
     )
 
     # ==========================================================
@@ -172,6 +186,14 @@ class Orcamento(models.Model):
         null=True,
         blank=True,
         verbose_name="Custo da mão de obra utilizado"
+    )
+
+    custo_mao_obra_acabamento_hora_utilizado = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        verbose_name="Custo da mão de obra de acabamento utilizado"
     )
 
     margem_lucro_utilizada = models.DecimalField(
@@ -274,13 +296,33 @@ class Orcamento(models.Model):
         ).quantize(Decimal("0.01"))
 
     @property
+    def custo_acabamento(self):
+
+        config = ConfiguracaoCusto.objects.first()
+
+        valor_acabamento = (
+            self.custo_mao_obra_acabamento_hora_utilizado
+            if self.custo_mao_obra_acabamento_hora_utilizado is not None
+            else (
+                config.custo_mao_obra_acabamento_hora
+                if config else Decimal("0.00")
+            )
+        )
+
+        return (
+            self.tempo_acabamento *
+            valor_acabamento
+        ).quantize(Decimal("0.01"))
+
+    @property
     def custo_total(self):
 
         total = (
         self.custo_material +
         self.custo_maquina +
         self.custo_energia +
-        self.custo_mao_obra
+        self.custo_mao_obra +
+        self.custo_acabamento
         )
 
         return total.quantize(Decimal("0.01"))

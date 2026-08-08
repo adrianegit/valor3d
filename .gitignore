@@ -6,6 +6,9 @@ venv/
 __pycache__/
 db.sqlite3
 
+# Arquivos estáticos gerados
+staticfiles/
+
 # Configurações
 .env
 
@@ -13,5 +16,9 @@ db.sqlite3
 .vscode/
 .idea/
 
+# Logs
+*.log
+
 # Sistema
 .DS_Store
+Thumbs.db
